@@ -117,7 +117,21 @@ class CartScreen extends StatelessWidget {
                         ),
                       ),
                       Column(
+                        crossAxisAlignment:
+                            CrossAxisAlignment.end, // Align to right
                         children: [
+                          IconButton(
+                            icon: const Icon(
+                              Icons.delete_outline,
+                              color: Colors.grey,
+                            ),
+                            onPressed: () {
+                              Provider.of<CartProvider>(
+                                context,
+                                listen: false,
+                              ).removeFromCart(productId);
+                            },
+                          ),
                           Row(
                             children: [
                               InkWell(

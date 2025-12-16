@@ -6,6 +6,7 @@ import '../widgets/product_card.dart';
 import '../models/product.dart';
 
 import 'product_detail_screen.dart';
+import 'catalog_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home-tab';
@@ -86,11 +87,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
                         Text(
-                          'Welcome Back',
+                          'Welcome to',
                           style: TextStyle(fontSize: 12, color: Colors.grey),
                         ),
                         Text(
-                          'Hey, Alex',
+                          'EFM Store',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -248,7 +249,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(
+                          context,
+                        ).pushNamed(CatalogScreen.routeName);
+                      },
                       child: const Text(
                         'See All',
                         style: TextStyle(color: Colors.grey),
