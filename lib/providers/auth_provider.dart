@@ -61,4 +61,21 @@ class AuthProvider with ChangeNotifier {
     _errorMessage = null;
     notifyListeners();
   }
+
+  Future<void> resetPassword(String email) async {
+    _isLoading = true;
+    _errorMessage = null;
+    notifyListeners();
+
+    try {
+      await _authService.resetPassword(email);
+    } on FirebaseAuthException catch (e) {
+      _errorMessage = e.message;
+    } catch (e) {
+      _errorMessage = 'An unknown error occurred';
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
 }

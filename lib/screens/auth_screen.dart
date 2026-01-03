@@ -5,6 +5,7 @@ import '../providers/auth_provider.dart';
 import '../theme/app_theme.dart';
 import '../widgets/custom_button.dart';
 import 'signup_screen.dart';
+import 'forgot_password_screen.dart';
 
 class AuthScreen extends StatefulWidget {
   static const routeName = '/auth';
@@ -230,7 +231,7 @@ class _AuthScreenState extends State<AuthScreen>
             alignment: Alignment.centerRight,
             child: TextButton(
               onPressed: () {
-                // TODO: Navigate to forgot password
+                Navigator.of(context).pushNamed(ForgotPasswordScreen.routeName);
               },
               child: Text(
                 'Forgot Password?',

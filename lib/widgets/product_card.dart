@@ -87,20 +87,25 @@ class _ProductCardState extends State<ProductCard>
                   boxShadow: _isHovered ? AppTheme.shadowMd : AppTheme.shadowSm,
                 ),
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(
-                      child: Stack(
-                        children: [
-                          // Product Image
-                          ClipRRect(
-                            borderRadius: const BorderRadius.vertical(
-                              top: Radius.circular(AppTheme.radiusLarge),
-                            ),
+                    // Product Image (No Expanded, allow intrinsic height)
+                    Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: const BorderRadius.vertical(
+                            top: Radius.circular(AppTheme.radiusLarge),
+                            bottom: Radius.circular(
+                              AppTheme.radiusSmall,
+                            ), // Slight curve at bottom of image too
+                          ),
+                          child: AspectRatio(
+                            aspectRatio:
+                                0.75, // Fixed aspect ratio for consistency, or remove for true masonry if images differ
                             child: Image.asset(
                               widget.product.imageUrl,
                               width: double.infinity,
-                              height: double.infinity,
                               fit: BoxFit.cover,
                               errorBuilder: (ctx, _, __) => Container(
                                 color: AppTheme.backgroundGray,
@@ -114,67 +119,67 @@ class _ProductCardState extends State<ProductCard>
                               ),
                             ),
                           ),
+                        ),
 
-                          // Discount Badge
-                          if (hasDiscount)
-                            Positioned(
-                              top: 8,
-                              left: 8,
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                  vertical: 4,
-                                ),
-                                decoration: BoxDecoration(
-                                  gradient: AppTheme.primaryGradient,
-                                  borderRadius: BorderRadius.circular(
-                                    AppTheme.radiusSmall,
-                                  ),
-                                  boxShadow: AppTheme.shadowSm,
-                                ),
-                                child: Text(
-                                  '-$discountPercentage%',
-                                  style: const TextStyle(
-                                    color: AppTheme.black,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-
-                          // Favorite Button
+                        // Discount Badge
+                        if (hasDiscount)
                           Positioned(
                             top: 8,
-                            right: 8,
-                            child: GestureDetector(
-                              onTap: () {
-                                wishlistProvider.toggleFavorite(
-                                  widget.product.id,
-                                );
-                                widget.onFavoriteToggle();
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  shape: BoxShape.circle,
-                                  boxShadow: AppTheme.shadowSm,
+                            left: 8,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                gradient: AppTheme.primaryGradient,
+                                borderRadius: BorderRadius.circular(
+                                  AppTheme.radiusSmall,
                                 ),
-                                child: Icon(
-                                  isFavorite
-                                      ? Icons.favorite
-                                      : Icons.favorite_border,
-                                  size: 18,
-                                  color: isFavorite
-                                      ? AppTheme.errorColor
-                                      : AppTheme.black,
+                                boxShadow: AppTheme.shadowSm,
+                              ),
+                              child: Text(
+                                '-$discountPercentage%',
+                                style: const TextStyle(
+                                  color: AppTheme.black,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
                           ),
-                        ],
-                      ),
+
+                        // Favorite Button
+                        Positioned(
+                          top: 8,
+                          right: 8,
+                          child: GestureDetector(
+                            onTap: () {
+                              wishlistProvider.toggleFavorite(
+                                widget.product.id,
+                              );
+                              widget.onFavoriteToggle();
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                shape: BoxShape.circle,
+                                boxShadow: AppTheme.shadowSm,
+                              ),
+                              child: Icon(
+                                isFavorite
+                                    ? Icons.favorite
+                                    : Icons.favorite_border,
+                                size: 18,
+                                color: isFavorite
+                                    ? AppTheme.errorColor
+                                    : AppTheme.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
 
                     // Product Info

@@ -4,13 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'providers/auth_provider.dart';
+import 'providers/product_provider.dart';
 import 'providers/cart_provider.dart';
 import 'providers/wishlist_provider.dart';
 import 'screens/auth_screen.dart';
 import 'screens/signup_screen.dart';
+import 'screens/forgot_password_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/product_detail_screen.dart';
 import 'screens/cart_screen.dart';
+import 'screens/checkout_screen.dart';
 import 'screens/confirmation_screen.dart';
 import 'screens/main_screen.dart';
 import 'theme/app_theme.dart';
@@ -111,6 +114,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (ctx) => AuthProvider()),
+        ChangeNotifierProvider(create: (ctx) => ProductProvider()),
         ChangeNotifierProvider(create: (ctx) => CartProvider()),
         ChangeNotifierProvider(create: (ctx) => WishlistProvider()),
       ],
@@ -122,10 +126,13 @@ class MyApp extends StatelessWidget {
           routes: {
             AuthScreen.routeName: (ctx) => const AuthScreen(),
             SignupScreen.routeName: (ctx) => const SignupScreen(),
+            ForgotPasswordScreen.routeName: (ctx) =>
+                const ForgotPasswordScreen(),
             MainScreen.routeName: (ctx) => const MainScreen(),
             HomeScreen.routeName: (ctx) => const HomeScreen(),
             ProductDetailScreen.routeName: (ctx) => const ProductDetailScreen(),
             CartScreen.routeName: (ctx) => const CartScreen(),
+            CheckoutScreen.routeName: (ctx) => const CheckoutScreen(),
             ConfirmationScreen.routeName: (ctx) => const ConfirmationScreen(),
           },
         ),

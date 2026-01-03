@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../widgets/category_pill.dart';
 import '../widgets/product_card.dart';
@@ -273,17 +274,14 @@ class _CatalogScreenState extends State<CatalogScreen> {
 
             // Grid
             Expanded(
-              child: GridView.builder(
+              child: MasonryGridView.count(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16,
                   vertical: 8,
                 ),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.7,
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                ),
+                crossAxisCount: 2,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
                 itemCount: _getFilteredProducts().length,
                 itemBuilder: (context, index) {
                   final filteredProducts = _getFilteredProducts();
