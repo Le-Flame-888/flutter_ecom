@@ -4,7 +4,7 @@ import 'home_screen.dart';
 import 'cart_screen.dart';
 import 'catalog_screen.dart';
 import 'wishlist_screen.dart';
-// import 'profile_screen.dart'; // Will implement next
+import 'profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
   static const routeName = '/main';
@@ -22,7 +22,7 @@ class _MainScreenState extends State<MainScreen> {
     const CatalogScreen(),
     const CartScreen(), // Using CartScreen for the center button for now
     const WishlistScreen(),
-    const Center(child: Text("Profile Placeholder")), // Placeholder
+    const ProfileScreen(),
   ];
 
   void _onTabTapped(int index) {

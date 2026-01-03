@@ -7,6 +7,7 @@ class Product {
   final String category;
   final String description;
   final bool isFavorite;
+  final String gender; // 'Men', 'Women', or 'Unisex'
 
   Product({
     required this.id,
@@ -17,5 +18,6 @@ class Product {
     required this.category,
     required this.description,
     this.isFavorite = false,
+    this.gender = 'Unisex',
   });
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../widgets/category_pill.dart';
 import '../widgets/product_card.dart';
 import '../models/product.dart';
+import '../theme/app_theme.dart';
 import 'product_detail_screen.dart';
 
 class CatalogScreen extends StatefulWidget {
@@ -15,49 +16,121 @@ class CatalogScreen extends StatefulWidget {
 }
 
 class _CatalogScreenState extends State<CatalogScreen> {
-  String _selectedCategory = 'Dresses';
-  final List<String> _categories = ['All', 'Dresses', 'Jackets', 'Jeans'];
+  String _selectedCategory = 'All';
+  String _selectedGender = 'All'; // Gender filter
+  final List<String> _categories = [
+    'All',
+    'Dresses',
+    'Hoodies',
+    'Jackets',
+    'Beanies',
+  ];
+  final List<String> _genders = ['All', 'Men', 'Women', 'Unisex'];
 
-  // Dummy Data
+  // Product Data with local assets (same as home screen)
   final List<Product> _products = [
+    // Dresses
     Product(
       id: 'p1',
-      name: 'Casual Hoodie Brown',
-      price: 45.00,
-      originalPrice: 56.00,
-      imageUrl:
-          'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80',
-      category: 'Outerwear Women',
-      description: 'Comfortable brown hoodie.',
-      isFavorite: true,
+      name: 'Summer Floral Dress',
+      price: 49.99,
+      originalPrice: 69.99,
+      imageUrl: 'assets/images/products/dresses/dress_1.jpg',
+      category: 'Dresses',
+      description: 'Light and breezy summer dress with floral pattern.',
+      gender: 'Women',
     ),
     Product(
       id: 'p2',
-      name: 'Casual Hoodie Black',
-      price: 68.00,
-      imageUrl:
-          'https://images.unsplash.com/photo-1578932750294-f5075e142d18?auto=format&fit=crop&w=600&q=80',
-      category: 'Outerwear Men',
-      description: 'Stylish black hoodie.',
+      name: 'Elegant Midi Dress',
+      price: 79.99,
+      imageUrl: 'assets/images/products/dresses/dress_2.jpg',
+      category: 'Dresses',
+      description: 'Elegant midi dress perfect for any occasion.',
+      gender: 'Women',
     ),
     Product(
       id: 'p3',
+      name: 'Casual Day Dress',
+      price: 39.99,
+      imageUrl: 'assets/images/products/dresses/dress_3.jpg',
+      category: 'Dresses',
+      description: 'Comfortable casual dress for everyday wear.',
+      gender: 'Women',
+    ),
+
+    // Hoodies
+    Product(
+      id: 'p4',
+      name: 'Casual Hoodie Brown',
+      price: 45.00,
+      originalPrice: 56.00,
+      imageUrl: 'assets/images/products/hoodies/hoodie_1.jpg',
+      category: 'Hoodies',
+      description: 'Comfortable brown hoodie perfect for casual outings.',
+      isFavorite: false,
+      gender: 'Women',
+    ),
+    Product(
+      id: 'p5',
+      name: 'Classic Black Hoodie',
+      price: 68.00,
+      imageUrl: 'assets/images/products/hoodies/hoodie_2.jpg',
+      category: 'Hoodies',
+      description: 'Stylish black hoodie with a modern fit.',
+      gender: 'Men',
+    ),
+    Product(
+      id: 'p6',
+      name: 'Premium Hoodie',
+      price: 89.00,
+      originalPrice: 120.00,
+      imageUrl: 'assets/images/products/hoodies/hoodie_3.jpg',
+      category: 'Hoodies',
+      description: 'Premium quality hoodie with superior comfort.',
+      gender: 'Men',
+    ),
+
+    // Jackets
+    Product(
+      id: 'p7',
       name: 'Denim Jacket',
       price: 85.00,
       originalPrice: 120.00,
-      imageUrl:
-          'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80',
+      imageUrl: 'assets/images/products/jackets/jacket_1.jpg',
       category: 'Jackets',
-      description: 'Classic denim jacket.',
+      description: 'Classic denim jacket for all seasons.',
+      gender: 'Unisex',
     ),
     Product(
-      id: 'p4',
-      name: 'Summer Dress',
-      price: 49.99,
-      imageUrl:
-          'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=600&q=80',
-      category: 'Dresses',
-      description: 'Light and breezy summer dress.',
+      id: 'p8',
+      name: 'Leather Bomber Jacket',
+      price: 149.99,
+      imageUrl: 'assets/images/products/jackets/jacket_2.jpg',
+      category: 'Jackets',
+      description: 'Premium leather bomber jacket.',
+      gender: 'Men',
+    ),
+
+    // Beanies
+    Product(
+      id: 'p9',
+      name: 'Wool Beanie',
+      price: 24.99,
+      imageUrl: 'assets/images/products/beanies/beanie_1.jpg',
+      category: 'Beanies',
+      description: 'Warm wool beanie for winter.',
+      gender: 'Unisex',
+    ),
+    Product(
+      id: 'p10',
+      name: 'Classic Knit Beanie',
+      price: 19.99,
+      originalPrice: 29.99,
+      imageUrl: 'assets/images/products/beanies/beanie_2.jpg',
+      category: 'Beanies',
+      description: 'Classic knit beanie in multiple colors.',
+      gender: 'Unisex',
     ),
   ];
 
@@ -134,6 +207,49 @@ class _CatalogScreenState extends State<CatalogScreen> {
 
             const SizedBox(height: 16),
 
+            // Gender Filter Pills
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                children: [
+                  Text(
+                    'Gender:',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontSize: 14,
+                      color: AppTheme.darkGray,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: SizedBox(
+                      height: 36,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: _genders.length,
+                        itemBuilder: (context, index) {
+                          final gender = _genders[index];
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 8),
+                            child: CategoryPill(
+                              label: gender,
+                              isSelected: _selectedGender == gender,
+                              onTap: () {
+                                setState(() {
+                                  _selectedGender = gender;
+                                });
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 16),
+
             // Product Grid Header
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -168,14 +284,15 @@ class _CatalogScreenState extends State<CatalogScreen> {
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
                 ),
-                itemCount: _products.length,
+                itemCount: _getFilteredProducts().length,
                 itemBuilder: (context, index) {
+                  final filteredProducts = _getFilteredProducts();
                   return ProductCard(
-                    product: _products[index],
+                    product: filteredProducts[index],
                     onTap: () {
                       Navigator.of(context).pushNamed(
                         ProductDetailScreen.routeName,
-                        arguments: _products[index],
+                        arguments: filteredProducts[index],
                       );
                     },
                     onFavoriteToggle: () {},
@@ -187,5 +304,20 @@ class _CatalogScreenState extends State<CatalogScreen> {
         ),
       ),
     );
+  }
+
+  // Filter products by category and gender
+  List<Product> _getFilteredProducts() {
+    return _products.where((product) {
+      // Category filter
+      final matchesCategory =
+          _selectedCategory == 'All' || product.category == _selectedCategory;
+
+      // Gender filter
+      final matchesGender =
+          _selectedGender == 'All' || product.gender == _selectedGender;
+
+      return matchesCategory && matchesGender;
+    }).toList();
   }
 }
