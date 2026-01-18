@@ -66,32 +66,28 @@ class _CatalogScreenState extends State<CatalogScreen> {
     }
 
     return Scaffold(
-      backgroundColor: AppTheme.backgroundLight,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
           slivers: [
             // AppBar / Header
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.fromLTRB(12, 16, 24, 16),
                 child: Row(
                   children: [
                     IconButton(
-                      icon: const Icon(
-                        Icons.arrow_back_ios_new,
-                        color: AppTheme.black,
-                      ),
+                      icon: const Icon(Icons.arrow_back, color: AppTheme.black),
                       onPressed: () => Navigator.of(context).pop(),
                     ),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: 4),
                     Expanded(
                       child: Container(
-                        height: 48,
+                        height: 56,
                         decoration: BoxDecoration(
-                          color: AppTheme.lightGray,
-                          borderRadius: BorderRadius.circular(
-                            AppTheme.radiusMedium,
-                          ),
+                          color: const Color(0xFFF9F9F9),
+                          borderRadius: BorderRadius.circular(28),
                         ),
                         child: TextField(
                           controller: _searchController,
@@ -100,35 +96,29 @@ class _CatalogScreenState extends State<CatalogScreen> {
                               _searchQuery = value;
                             });
                           },
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
                           decoration: const InputDecoration(
-                            hintText: 'Search Products',
+                            hintText: 'SEARCH PRODUCTS...',
+                            hintStyle: TextStyle(
+                              letterSpacing: 1,
+                              fontSize: 10,
+                              fontWeight: FontWeight.w900,
+                              color: Color(0xFFBDBDBD),
+                            ),
                             prefixIcon: Icon(
                               Icons.search,
-                              color: AppTheme.mediumGray,
+                              color: AppTheme.black,
+                              size: 20,
                             ),
                             border: InputBorder.none,
                             enabledBorder: InputBorder.none,
                             focusedBorder: InputBorder.none,
-                            contentPadding: EdgeInsets.symmetric(vertical: 12),
+                            contentPadding: EdgeInsets.symmetric(vertical: 18),
                           ),
                         ),
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Container(
-                      width: 48,
-                      height: 48,
-                      decoration: BoxDecoration(
-                        color: AppTheme.primaryColor,
-                        borderRadius: BorderRadius.circular(
-                          AppTheme.radiusMedium,
-                        ),
-                      ),
-                      child: IconButton(
-                        icon: const Icon(Icons.tune, color: AppTheme.black),
-                        onPressed: () {
-                          // TODO: Filter Bottom Sheet
-                        },
                       ),
                     ),
                   ],
@@ -139,41 +129,40 @@ class _CatalogScreenState extends State<CatalogScreen> {
             // Categories
             SliverToBoxAdapter(
               child: SizedBox(
-                height: 40,
+                height: 44,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  physics: const BouncingScrollPhysics(),
                   itemCount: _categories.length,
                   itemBuilder: (context, index) {
                     final category = _categories[index];
                     final isSelected = _selectedCategory == category;
                     return Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
+                      padding: const EdgeInsets.only(right: 12),
                       child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _selectedCategory = category;
-                          });
-                        },
-                        child: Container(
-                          alignment: Alignment.center,
+                        onTap: () =>
+                            setState(() => _selectedCategory = category),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
                           padding: const EdgeInsets.symmetric(horizontal: 24),
                           decoration: BoxDecoration(
-                            color: isSelected
-                                ? AppTheme.black
-                                : AppTheme.lightGray,
-                            borderRadius: BorderRadius.circular(
-                              AppTheme.radiusFull,
+                            color: isSelected ? AppTheme.black : Colors.white,
+                            borderRadius: BorderRadius.circular(22),
+                            border: Border.all(
+                              color: isSelected
+                                  ? AppTheme.black
+                                  : const Color(0xFFF3F3F3),
                             ),
                           ),
+                          alignment: Alignment.center,
                           child: Text(
-                            category,
+                            category.toUpperCase(),
                             style: TextStyle(
                               color: isSelected ? Colors.white : AppTheme.black,
-                              fontWeight: isSelected
-                                  ? FontWeight.bold
-                                  : FontWeight.w500,
-                              fontSize: 14,
+                              fontWeight: FontWeight.w900,
+                              fontSize: 11,
+                              letterSpacing: 0.5,
                             ),
                           ),
                         ),
@@ -186,73 +175,52 @@ class _CatalogScreenState extends State<CatalogScreen> {
 
             const SliverToBoxAdapter(child: SizedBox(height: 16)),
 
-            // Gender Filters (Optional, can be removed if strictly following HomeScreen style, but useful for Catalog)
+            // Gender Filters (Unified Stitch Style)
             SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  children: [
-                    Text(
-                      'Gender:',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontSize: 14,
-                        color: AppTheme.darkGray,
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: SizedBox(
-                        height: 36,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: _genders.length,
-                          itemBuilder: (context, index) {
-                            final gender = _genders[index];
-                            final isSelected = _selectedGender == gender;
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 8),
-                              child: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    _selectedGender = gender;
-                                  });
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 8,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: isSelected
-                                        ? AppTheme.primaryColor
-                                        : Colors.transparent,
-                                    borderRadius: BorderRadius.circular(
-                                      AppTheme.radiusFull,
-                                    ),
-                                    border: Border.all(
-                                      color: isSelected
-                                          ? AppTheme.primaryColor
-                                          : AppTheme.lightGray,
-                                    ),
-                                  ),
-                                  child: Text(
-                                    gender,
-                                    style: TextStyle(
-                                      color: AppTheme.black,
-                                      fontWeight: isSelected
-                                          ? FontWeight.bold
-                                          : FontWeight.normal,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
+              child: SizedBox(
+                height: 36,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: _genders.length,
+                  itemBuilder: (context, index) {
+                    final gender = _genders[index];
+                    final isSelected = _selectedGender == gender;
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: GestureDetector(
+                        onTap: () => setState(() => _selectedGender = gender),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          decoration: BoxDecoration(
+                            color: isSelected
+                                ? AppTheme.primaryColor
+                                : Colors.white,
+                            borderRadius: BorderRadius.circular(18),
+                            border: Border.all(
+                              color: isSelected
+                                  ? AppTheme.primaryColor
+                                  : const Color(0xFFF3F3F3),
+                            ),
+                          ),
+                          alignment: Alignment.center,
+                          child: Text(
+                            gender,
+                            style: TextStyle(
+                              color: AppTheme.black,
+                              fontWeight: isSelected
+                                  ? FontWeight.w900
+                                  : FontWeight.w700,
+                              fontSize: 10,
+                              letterSpacing: 0.5,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    );
+                  },
                 ),
               ),
             ),

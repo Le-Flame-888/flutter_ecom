@@ -9,17 +9,22 @@ class LoyaltyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundLight,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: AppTheme.backgroundLight.withOpacity(0.9),
+        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, color: AppTheme.black),
+          icon: const Icon(Icons.arrow_back, color: AppTheme.black),
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: const Text(
-          'My Rewards',
-          style: TextStyle(color: AppTheme.black, fontWeight: FontWeight.bold),
+          'REWARDS',
+          style: TextStyle(
+            color: AppTheme.black,
+            fontWeight: FontWeight.w900,
+            fontSize: 14,
+            letterSpacing: 1,
+          ),
         ),
         centerTitle: true,
         actions: [

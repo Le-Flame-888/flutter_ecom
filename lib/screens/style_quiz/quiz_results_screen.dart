@@ -10,19 +10,22 @@ class QuizResultsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundLight,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: AppTheme.backgroundLight.withOpacity(0.9),
+        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.close, color: AppTheme.black),
-          onPressed: () => Navigator.of(
-            context,
-          ).pushNamedAndRemoveUntil(MainScreen.routeName, (route) => false),
+          icon: const Icon(Icons.arrow_back, color: AppTheme.black),
+          onPressed: () => Navigator.of(context).pop(),
         ),
         title: const Text(
-          'Results',
-          style: TextStyle(color: AppTheme.black, fontWeight: FontWeight.bold),
+          'QUIZ RESULTS',
+          style: TextStyle(
+            color: AppTheme.black,
+            fontWeight: FontWeight.w900,
+            fontSize: 14,
+            letterSpacing: 1,
+          ),
         ),
         centerTitle: true,
         actions: [

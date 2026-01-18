@@ -11,65 +11,78 @@ class HelpCenterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundLight,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: AppTheme.backgroundLight.withOpacity(0.8),
+        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, color: AppTheme.black),
+          icon: const Icon(Icons.arrow_back, color: AppTheme.black),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: Text(
-          'Help Center',
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            fontWeight: FontWeight.bold,
+        title: const Text(
+          'HELP CENTER',
+          style: TextStyle(
             color: AppTheme.black,
+            fontWeight: FontWeight.w900,
+            fontSize: 14,
+            letterSpacing: 1,
           ),
         ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(AppTheme.spacing16),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 24),
             // Search Bar
             Container(
+              height: 56,
               decoration: BoxDecoration(
-                color: AppTheme.lightGray,
-                borderRadius: BorderRadius.circular(AppTheme.radiusMedium),
-                boxShadow: AppTheme.shadowSm,
+                color: const Color(0xFFF9F9F9),
+                borderRadius: BorderRadius.circular(28),
               ),
-              child: TextField(
-                decoration: const InputDecoration(
-                  hintText: 'How can we help?',
-                  prefixIcon: Icon(Icons.search, color: AppTheme.mediumGray),
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 14,
+              child: const TextField(
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                decoration: InputDecoration(
+                  hintText: 'HOW CAN WE HELP?',
+                  hintStyle: TextStyle(
+                    letterSpacing: 1,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w900,
+                    color: Color(0xFFBDBDBD),
                   ),
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: AppTheme.black,
+                    size: 20,
+                  ),
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.symmetric(vertical: 18),
                 ),
-                style: Theme.of(context).textTheme.bodyMedium,
               ),
             ),
-            const SizedBox(height: AppTheme.spacing24),
+            const SizedBox(height: 40),
 
             // Popular Topics
-            Text(
-              'Popular Topics',
-              style: Theme.of(
-                context,
-              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+            const Text(
+              'POPULAR TOPICS',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w900,
+                color: AppTheme.black,
+                letterSpacing: 1,
+              ),
             ),
-            const SizedBox(height: AppTheme.spacing16),
+            const SizedBox(height: 24),
             GridView.count(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               crossAxisCount: 2,
-              crossAxisSpacing: 12,
-              mainAxisSpacing: 12,
-              childAspectRatio: 1.4,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+              childAspectRatio: 1.1,
               children: [
                 _buildTopicCard(
                   context,
@@ -79,7 +92,7 @@ class HelpCenterScreen extends StatelessWidget {
                 _buildTopicCard(
                   context,
                   icon: Icons.assignment_return_outlined,
-                  title: 'Returns & Refunds',
+                  title: 'Returns',
                   onTap: () => Navigator.of(
                     context,
                   ).pushNamed(SelectReturnOrderScreen.routeName),
@@ -87,49 +100,45 @@ class HelpCenterScreen extends StatelessWidget {
                 _buildTopicCard(
                   context,
                   icon: Icons.payment_outlined,
-                  title: 'Payment Issues',
+                  title: 'Payment',
                 ),
                 _buildTopicCard(
                   context,
-                  icon: Icons.straighten_outlined,
-                  title: 'Size Guide',
+                  icon: Icons.shopping_bag_outlined,
+                  title: 'Promos',
                 ),
               ],
             ),
-            const SizedBox(height: AppTheme.spacing32),
+            const SizedBox(height: 48),
 
             // Contact Us
-            Text(
-              'Contact Us',
-              style: Theme.of(
-                context,
-              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+            const Text(
+              'GET IN TOUCH',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w900,
+                color: AppTheme.black,
+                letterSpacing: 1,
+              ),
             ),
-            const SizedBox(height: AppTheme.spacing16),
+            const SizedBox(height: 20),
             _buildContactItem(
               context,
               icon: Icons.chat_bubble_outline,
               title: 'Live Chat',
               subtitle: 'Speak to our team now',
               isOnline: true,
-              onTap: () {
-                Navigator.of(context).pushNamed(LiveChatScreen.routeName);
-              },
+              onTap: () =>
+                  Navigator.of(context).pushNamed(LiveChatScreen.routeName),
             ),
             _buildContactItem(
               context,
               icon: Icons.mail_outline,
-              title: 'Send an Email',
-              subtitle: 'Usually respond within 24 hours',
+              title: 'Email',
+              subtitle: 'Response within 24h',
               onTap: () {},
             ),
-            _buildContactItem(
-              context,
-              icon: Icons.call_outlined,
-              title: 'Call Support',
-              subtitle: 'Mon-Fri, 9am - 6pm',
-              onTap: () {},
-            ),
+            const SizedBox(height: 40),
           ],
         ),
       ),
@@ -145,29 +154,28 @@ class HelpCenterScreen extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: AppTheme.whiteColor,
-          borderRadius: BorderRadius.circular(AppTheme.radiusMedium),
-          border: Border.all(color: AppTheme.lightGray),
-          boxShadow: AppTheme.shadowSm,
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(color: const Color(0xFFF3F3F3)),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: AppTheme.primaryColor.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(8),
+              padding: const EdgeInsets.all(10),
+              decoration: const BoxDecoration(
+                color: Color(0xFFF9F9F9),
+                shape: BoxShape.circle,
               ),
               child: Icon(icon, color: AppTheme.black, size: 24),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 16),
             Text(
               title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 14),
             ),
           ],
         ),
@@ -186,26 +194,24 @@ class HelpCenterScreen extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.only(bottom: 12),
-        padding: const EdgeInsets.all(16),
+        margin: const EdgeInsets.only(bottom: 16),
+        padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: AppTheme.whiteColor,
-          borderRadius: BorderRadius.circular(AppTheme.radiusMedium),
-          border: Border.all(color: AppTheme.lightGray),
-          boxShadow: AppTheme.shadowSm,
+          color: const Color(0xFFF9F9F9),
+          borderRadius: BorderRadius.circular(24),
         ),
         child: Row(
           children: [
             Container(
-              width: 48,
-              height: 48,
-              decoration: BoxDecoration(
-                color: AppTheme.lightGray,
-                borderRadius: BorderRadius.circular(12),
+              width: 52,
+              height: 52,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
               ),
               child: Icon(icon, color: AppTheme.black),
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: 20),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -215,41 +221,18 @@ class HelpCenterScreen extends StatelessWidget {
                       Text(
                         title,
                         style: const TextStyle(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w900,
                           fontSize: 16,
                         ),
                       ),
                       if (isOnline) ...[
                         const SizedBox(width: 8),
                         Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 6,
-                            vertical: 2,
-                          ),
-                          decoration: BoxDecoration(
-                            color: AppTheme.primaryColor.withOpacity(0.2),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 6,
-                                height: 6,
-                                decoration: const BoxDecoration(
-                                  color: AppTheme.primaryColor,
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                              const SizedBox(width: 4),
-                              const Text(
-                                'ONLINE',
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppTheme.black,
-                                ),
-                              ),
-                            ],
+                          width: 8,
+                          height: 8,
+                          decoration: const BoxDecoration(
+                            color: AppTheme.primaryColor,
+                            shape: BoxShape.circle,
                           ),
                         ),
                       ],
@@ -258,12 +241,20 @@ class HelpCenterScreen extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     subtitle,
-                    style: TextStyle(fontSize: 14, color: AppTheme.mediumGray),
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: AppTheme.mediumGray,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ],
               ),
             ),
-            const Icon(Icons.chevron_right, color: AppTheme.mediumGray),
+            const Icon(
+              Icons.arrow_forward_ios,
+              size: 16,
+              color: AppTheme.black,
+            ),
           ],
         ),
       ),

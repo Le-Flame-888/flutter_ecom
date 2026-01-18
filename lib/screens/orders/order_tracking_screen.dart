@@ -12,88 +12,95 @@ class OrderTrackingScreen extends StatelessWidget {
         ModalRoute.of(context)?.settings.arguments as String? ?? '#12345';
 
     return Scaffold(
-      backgroundColor: AppTheme.backgroundLight,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: AppTheme.backgroundLight.withOpacity(0.9),
+        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: AppTheme.black),
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: const Text(
-          'Track Order',
-          style: TextStyle(color: AppTheme.black, fontWeight: FontWeight.bold),
+          'ORDER TRACKING',
+          style: TextStyle(
+            color: AppTheme.black,
+            fontWeight: FontWeight.w900,
+            fontSize: 14,
+            letterSpacing: 1,
+          ),
         ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(AppTheme.spacing24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 24),
             // Summary Card
             Container(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                color: AppTheme.whiteColor,
-                borderRadius: BorderRadius.circular(AppTheme.radiusMedium),
-                boxShadow: AppTheme.shadowSm,
+                color: const Color(0xFFF9F9F9),
+                borderRadius: BorderRadius.circular(32),
               ),
               child: Row(
                 children: [
                   Container(
-                    width: 80,
-                    height: 80,
+                    width: 70,
+                    height: 70,
                     decoration: BoxDecoration(
-                      color: AppTheme.lightGray,
-                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
                     ),
                     child: const Icon(
-                      Icons.shopping_bag,
-                      size: 32,
-                      color: AppTheme.mediumGray,
+                      Icons.shopping_bag_outlined,
+                      size: 28,
+                      color: AppTheme.black,
                     ),
                   ),
-                  const SizedBox(width: 16),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Order ID',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppTheme.mediumGray,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 0.5,
+                  const SizedBox(width: 20),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'ORDER $orderId',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w900,
+                            fontSize: 14,
+                            letterSpacing: 0.5,
+                          ),
                         ),
-                      ),
-                      Text(
-                        orderId,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                        const SizedBox(height: 4),
+                        const Text(
+                          '3 ITEMS • \$89.99',
+                          style: TextStyle(
+                            color: Color(0xFFBDBDBD),
+                            fontSize: 10,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: 0.5,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 4),
-                      const Text(
-                        '3 Items • \$89.99',
-                        style: TextStyle(color: AppTheme.mediumGray),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 48),
 
             // Status Header
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Delivery Status',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                const Text(
+                  'TRACKING STATUS',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 1,
+                  ),
                 ),
                 Container(
                   padding: const EdgeInsets.symmetric(
@@ -101,41 +108,42 @@ class OrderTrackingScreen extends StatelessWidget {
                     vertical: 4,
                   ),
                   decoration: BoxDecoration(
-                    color: AppTheme.primaryColor.withOpacity(0.2),
+                    color: AppTheme.primaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: const Text(
                     'ON THE WAY',
                     style: TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF4CAF50),
+                      fontWeight: FontWeight.w900,
                       fontSize: 10,
+                      letterSpacing: 0.5,
                     ),
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 32),
 
             // Timeline
             _buildTimelineStep(
               context,
               title: 'Order Placed',
-              subtitle: 'Oct 24, 10:00 AM',
+              subtitle: 'OCT 24, 10:00 AM',
               isCompleted: true,
               isLast: false,
             ),
             _buildTimelineStep(
               context,
               title: 'Processing',
-              subtitle: 'Oct 24, 02:30 PM',
+              subtitle: 'OCT 24, 02:30 PM',
               isCompleted: true,
               isLast: false,
             ),
             _buildTimelineStep(
               context,
-              title: 'On the Way',
-              subtitle: 'Active now • 2 miles away',
+              title: 'Shipped',
+              subtitle: 'OCT 25, 08:45 AM',
               isCompleted: false,
               isActive: true,
               isLast: false,
@@ -143,10 +151,11 @@ class OrderTrackingScreen extends StatelessWidget {
             _buildTimelineStep(
               context,
               title: 'Delivered',
-              subtitle: 'Estimated Oct 25',
+              subtitle: 'ESTIMATED OCT 26',
               isCompleted: false,
               isLast: true,
             ),
+            const SizedBox(height: 40),
           ],
         ),
       ),
@@ -167,73 +176,68 @@ class OrderTrackingScreen extends StatelessWidget {
         Column(
           children: [
             Container(
-              width: 32,
-              height: 32,
+              width: 24,
+              height: 24,
               decoration: BoxDecoration(
                 color: isCompleted
-                    ? AppTheme.primaryColor
-                    : (isActive
-                          ? AppTheme.primaryColor.withOpacity(0.2)
-                          : Colors.transparent),
+                    ? AppTheme.black
+                    : (isActive ? AppTheme.primaryColor : Colors.white),
                 shape: BoxShape.circle,
-                border: isActive || !isCompleted
-                    ? Border.all(
-                        color: isActive
-                            ? AppTheme.primaryColor
-                            : AppTheme.lightGray,
-                        width: 2,
-                      )
+                border: !isCompleted && !isActive
+                    ? Border.all(color: const Color(0xFFF3F3F3), width: 2)
                     : null,
               ),
-              child: Center(
-                child: isCompleted
-                    ? const Icon(Icons.check, size: 18, color: AppTheme.black)
-                    : (isActive
-                          ? const Icon(
-                              Icons.local_shipping,
-                              size: 18,
+              child: isCompleted
+                  ? const Icon(Icons.check, size: 14, color: Colors.white)
+                  : (isActive
+                        ? const Center(
+                            child: Icon(
+                              Icons.circle,
+                              size: 8,
                               color: AppTheme.black,
-                            )
-                          : const Icon(
-                              Icons.inventory_2,
-                              size: 18,
-                              color: AppTheme.mediumGray,
-                            )),
-              ),
+                            ),
+                          )
+                        : null),
             ),
             if (!isLast)
               Container(
                 width: 2,
-                height: 40,
-                color: isCompleted ? AppTheme.primaryColor : AppTheme.lightGray,
+                height: 50,
+                color: isCompleted ? AppTheme.black : const Color(0xFFF3F3F3),
               ),
           ],
         ),
-        const SizedBox(width: 16),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-                color: isCompleted || isActive
-                    ? AppTheme.black
-                    : AppTheme.mediumGray,
+        const SizedBox(width: 20),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title.toUpperCase(),
+                style: TextStyle(
+                  fontWeight: FontWeight.w900,
+                  fontSize: 13,
+                  letterSpacing: 0.5,
+                  color: isCompleted || isActive
+                      ? AppTheme.black
+                      : const Color(0xFFBDBDBD),
+                ),
               ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              subtitle,
-              style: TextStyle(
-                color: isActive ? AppTheme.primaryColor : AppTheme.mediumGray,
-                fontSize: 14,
-                fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+              const SizedBox(height: 4),
+              Text(
+                subtitle,
+                style: TextStyle(
+                  color: isActive
+                      ? AppTheme.primaryColor
+                      : const Color(0xFFBDBDBD),
+                  fontSize: 11,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 0.5,
+                ),
               ),
-            ),
-            const SizedBox(height: 24),
-          ],
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
       ],
     );

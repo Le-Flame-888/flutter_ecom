@@ -17,36 +17,49 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundLight,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         elevation: 0,
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
             onPressed: () => Navigator.of(context).pop(),
             icon: Container(
-              padding: const EdgeInsets.all(4),
+              padding: const EdgeInsets.all(8),
               decoration: const BoxDecoration(
-                color: AppTheme.whiteColor,
+                color: Color(0xFFF9F9F9),
                 shape: BoxShape.circle,
               ),
-              child: const Icon(Icons.close, color: AppTheme.black),
+              child: const Icon(Icons.close, color: AppTheme.black, size: 20),
             ),
           ),
+          const SizedBox(width: 16),
         ],
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           children: [
-            const SizedBox(height: 20),
-            Text(
-              'Rate Your Experience',
+            const SizedBox(height: 24),
+            const Text(
+              'RATE YOUR EXPERIENCE',
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                fontWeight: FontWeight.bold,
+              style: TextStyle(
+                fontWeight: FontWeight.w900,
+                fontSize: 24,
                 color: AppTheme.black,
+                letterSpacing: -0.5,
+              ),
+            ),
+            const SizedBox(height: 12),
+            const Text(
+              'Your feedback helps us improve the Stitch shopping experience.',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Color(0xFFBDBDBD),
+                fontWeight: FontWeight.w600,
+                fontSize: 14,
               ),
             ),
             const SizedBox(height: 48),
@@ -56,81 +69,104 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(5, (index) {
                 return IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _rating = index + 1;
-                    });
-                  },
-                  iconSize: 48,
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  onPressed: () => setState(() => _rating = index + 1),
+                  iconSize: 52,
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
                   icon: Icon(
-                    Icons.star,
+                    index < _rating ? Icons.star : Icons.star_border,
                     color: index < _rating
                         ? AppTheme.primaryColor
-                        : AppTheme.lightGray,
+                        : const Color(0xFFE0E0E0),
                   ),
                 );
               }),
             ),
-            const SizedBox(height: 48),
+            const SizedBox(height: 56),
 
             // Text Input
             Container(
               decoration: BoxDecoration(
-                color: AppTheme.whiteColor,
-                borderRadius: BorderRadius.circular(AppTheme.radiusMedium),
-                boxShadow: AppTheme.shadowSm,
+                color: const Color(0xFFF9F9F9),
+                borderRadius: BorderRadius.circular(32),
               ),
               child: TextField(
                 controller: _feedbackController,
                 maxLines: 6,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 14,
+                ),
                 decoration: const InputDecoration(
                   border: InputBorder.none,
-                  hintText: 'Share your thoughts about our service (optional)',
-                  contentPadding: EdgeInsets.all(20),
+                  hintText: 'SHARE YOUR THOUGHTS...',
+                  hintStyle: TextStyle(
+                    letterSpacing: 1,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w900,
+                    color: Color(0xFFBDBDBD),
+                  ),
+                  contentPadding: EdgeInsets.all(28),
                 ),
               ),
             ),
 
-            const SizedBox(height: 24),
+            const SizedBox(height: 32),
 
             // Chips
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              alignment: WrapAlignment.center,
               children: [
-                _buildChip('Fast Response', true),
-                const SizedBox(width: 12),
-                _buildChip('Very Helpful', false),
+                _buildChip('FAST RESPONSE', true),
+                _buildChip('HELPFUL', false),
               ],
             ),
 
-            const SizedBox(height: 48),
+            const SizedBox(height: 64),
 
             // Submit Button
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pop(); // Go back to Home/Profile
+                  Navigator.of(context).pop();
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('Thank you for your feedback!'),
+                      content: Text(
+                        'THANK YOU FOR YOUR FEEDBACK!',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white,
+                        ),
+                      ),
+                      backgroundColor: AppTheme.black,
                     ),
                   );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppTheme.primaryColor,
                   foregroundColor: AppTheme.black,
-                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 22),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppTheme.radiusMedium),
+                    borderRadius: BorderRadius.circular(32),
                   ),
-                  shadowColor: AppTheme.primaryColor.withOpacity(0.4),
-                  elevation: 8,
+                  elevation: 0,
                 ),
-                child: const Text(
-                  'Submit Feedback',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'SUBMIT FEEDBACK',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 1,
+                      ),
+                    ),
+                    SizedBox(width: 8),
+                    Icon(Icons.arrow_forward_ios, size: 14),
+                  ],
                 ),
               ),
             ),
@@ -142,17 +178,21 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
 
   Widget _buildChip(String label, bool isSelected) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
       decoration: BoxDecoration(
-        color: isSelected ? AppTheme.primaryColor : AppTheme.whiteColor,
-        borderRadius: BorderRadius.circular(AppTheme.radiusMedium),
-        border: isSelected ? null : Border.all(color: AppTheme.lightGray),
+        color: isSelected ? AppTheme.black : Colors.white,
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(
+          color: isSelected ? AppTheme.black : const Color(0xFFF3F3F3),
+        ),
       ),
       child: Text(
         label,
         style: TextStyle(
-          fontWeight: FontWeight.w600,
-          color: isSelected ? AppTheme.black : AppTheme.mediumGray,
+          fontWeight: FontWeight.w900,
+          fontSize: 10,
+          letterSpacing: 0.5,
+          color: isSelected ? Colors.white : AppTheme.black,
         ),
       ),
     );

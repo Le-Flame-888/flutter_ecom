@@ -16,31 +16,42 @@ class OrderHistoryScreen extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: AppTheme.backgroundLight,
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: AppTheme.backgroundLight.withOpacity(0.9),
+          backgroundColor: Colors.white,
           elevation: 0,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: AppTheme.black),
             onPressed: () => Navigator.of(context).pop(),
           ),
           title: const Text(
-            'My Orders',
+            'MY ORDERS',
             style: TextStyle(
               color: AppTheme.black,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w900,
+              fontSize: 14,
+              letterSpacing: 1,
             ),
           ),
           centerTitle: true,
-          bottom: const TabBar(
-            labelColor: AppTheme.primaryColor,
-            unselectedLabelColor: AppTheme.mediumGray,
+          bottom: TabBar(
+            labelColor: AppTheme.black,
+            unselectedLabelColor: const Color(0xFFBDBDBD),
             indicatorColor: AppTheme.primaryColor,
-            labelStyle: TextStyle(fontWeight: FontWeight.bold),
-            tabs: [
-              Tab(text: 'Active'),
-              Tab(text: 'Completed'),
-              Tab(text: 'Cancelled'),
+            indicatorWeight: 4,
+            labelStyle: const TextStyle(
+              fontWeight: FontWeight.w900,
+              fontSize: 13,
+              letterSpacing: 0.5,
+            ),
+            unselectedLabelStyle: const TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 13,
+            ),
+            tabs: const [
+              Tab(text: 'ACTIVE'),
+              Tab(text: 'COMPLETED'),
+              Tab(text: 'CANCELLED'),
             ],
           ),
         ),
@@ -65,18 +76,26 @@ class OrderHistoryScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.shopping_bag_outlined,
-              size: 64,
-              color: AppTheme.mediumGray.withOpacity(0.5),
+            Container(
+              width: 100,
+              height: 100,
+              decoration: const BoxDecoration(
+                color: Color(0xFFF9F9F9),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.shopping_bag_outlined,
+                size: 40,
+                color: Color(0xFFE0E0E0),
+              ),
             ),
-            const SizedBox(height: 16),
-            Text(
+            const SizedBox(height: 24),
+            const Text(
               'No orders found',
               style: TextStyle(
-                color: AppTheme.mediumGray,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
+                color: AppTheme.black,
+                fontSize: 18,
+                fontWeight: FontWeight.w900,
               ),
             ),
           ],
@@ -85,7 +104,7 @@ class OrderHistoryScreen extends StatelessWidget {
     }
 
     return ListView.builder(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(24),
       itemCount: orders.length,
       itemBuilder: (context, index) {
         return _buildOrderCard(context, orders[index]);
@@ -100,29 +119,36 @@ class OrderHistoryScreen extends StatelessWidget {
     switch (order.status) {
       case OrderStatus.processing:
         statusColor = Colors.blue;
-        statusText = 'Processing';
+        statusText = 'PROCESSING';
         break;
       case OrderStatus.inTransit:
-        statusColor = Colors.orange;
-        statusText = 'In Transit';
+        statusColor = const Color(0xFF4CAF50);
+        statusText = 'ON THE WAY';
         break;
       case OrderStatus.delivered:
-        statusColor = AppTheme.primaryColor;
-        statusText = 'Delivered';
+        statusColor = const Color(0xFF4CAF50);
+        statusText = 'DELIVERED';
         break;
       case OrderStatus.cancelled:
         statusColor = Colors.red;
-        statusText = 'Cancelled';
+        statusText = 'CANCELLED';
         break;
     }
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.only(bottom: 24),
+      padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: AppTheme.whiteColor,
-        borderRadius: BorderRadius.circular(AppTheme.radiusMedium),
-        boxShadow: AppTheme.shadowSm,
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(32),
+        border: Border.all(color: const Color(0xFFF3F3F3)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 15,
+            offset: const Offset(0, 8),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -131,26 +157,13 @@ class OrderHistoryScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Order ID',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppTheme.mediumGray,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 0.5,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    order.id,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
+              Text(
+                'ORDER ${order.id.toUpperCase()}',
+                style: const TextStyle(
+                  fontWeight: FontWeight.w900,
+                  fontSize: 12,
+                  letterSpacing: 0.5,
+                ),
               ),
               Container(
                 padding: const EdgeInsets.symmetric(
@@ -164,113 +177,140 @@ class OrderHistoryScreen extends StatelessWidget {
                 child: Text(
                   statusText,
                   style: TextStyle(
-                    color: statusColor == AppTheme.primaryColor
-                        ? Colors.green[800]
-                        : statusColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
+                    color: statusColor,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 10,
+                    letterSpacing: 0.5,
                   ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 8),
           Text(
-            DateFormat('MMM dd, yyyy, hh:mm a').format(order.date),
-            style: const TextStyle(color: AppTheme.mediumGray, fontSize: 13),
+            DateFormat('MMMM dd, yyyy').format(order.date),
+            style: const TextStyle(
+              color: Color(0xFFBDBDBD),
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+            ),
           ),
-          const Divider(height: 24),
+
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: Divider(color: Color(0xFFF3F3F3), height: 1),
+          ),
 
           // Product Thumbnails
           SizedBox(
-            height: 60,
+            height: 70,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: order.items.length,
               itemBuilder: (context, index) {
                 return Container(
-                  width: 60,
-                  margin: const EdgeInsets.only(right: 8),
+                  width: 70,
+                  margin: const EdgeInsets.only(right: 12),
                   decoration: BoxDecoration(
-                    color: AppTheme.lightGray,
-                    borderRadius: BorderRadius.circular(8),
-                    image: DecorationImage(
-                      image: AssetImage(order.items[index].imageUrl),
-                      fit: BoxFit.cover,
-                    ),
+                    color: const Color(0xFFF9F9F9),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  padding: const EdgeInsets.all(8),
+                  child: Image.asset(
+                    order.items[index].imageUrl,
+                    fit: BoxFit.contain,
+                    errorBuilder: (ctx, err, stack) =>
+                        const Icon(Icons.shopping_bag_outlined),
                   ),
                 );
               },
             ),
           ),
-          const SizedBox(height: 16),
 
-          // Actions
+          const SizedBox(height: 24),
+
+          // Footer & Actions
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                child: OutlinedButton(
-                  onPressed: () {
-                    // TODO: View Details
-                  },
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: AppTheme.black,
-                    side: const BorderSide(color: AppTheme.lightGray),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                        AppTheme.radiusMedium,
-                      ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'TOTAL',
+                    style: TextStyle(
+                      color: Color(0xFFBDBDBD),
+                      fontSize: 10,
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: 1,
                     ),
-                    padding: const EdgeInsets.symmetric(vertical: 12),
                   ),
-                  child: const Text('View Details'),
-                ),
+                  const SizedBox(height: 4),
+                  Text(
+                    '\$${order.totalAmount.toStringAsFixed(2)}',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 18,
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(width: 12),
-              if (order.status == OrderStatus.inTransit ||
-                  order.status == OrderStatus.processing)
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed(
-                        OrderTrackingScreen.routeName,
-                        arguments: order.id,
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppTheme.primaryColor,
-                      foregroundColor: AppTheme.black,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          AppTheme.radiusMedium,
+              Row(
+                children: [
+                  if (order.status == OrderStatus.inTransit ||
+                      order.status == OrderStatus.processing)
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(
+                          OrderTrackingScreen.routeName,
+                          arguments: order.id,
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppTheme.primaryColor,
+                        foregroundColor: AppTheme.black,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 12,
                         ),
                       ),
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                    ),
-                    child: const Text('Track Order'),
-                  ),
-                )
-              else if (order.status == OrderStatus.delivered)
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Reorder Logic
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppTheme.primaryColor,
-                      foregroundColor: AppTheme.black,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          AppTheme.radiusMedium,
+                      child: const Text(
+                        'Track',
+                        style: TextStyle(fontWeight: FontWeight.w900),
+                      ),
+                    )
+                  else if (order.status == OrderStatus.delivered)
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppTheme.primaryColor,
+                        foregroundColor: AppTheme.black,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 12,
                         ),
                       ),
-                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      child: const Text(
+                        'Reorder',
+                        style: TextStyle(fontWeight: FontWeight.w900),
+                      ),
                     ),
-                    child: const Text('Reorder'),
+                  const SizedBox(width: 8),
+                  IconButton(
+                    icon: const Icon(Icons.arrow_forward_ios, size: 16),
+                    onPressed: () {},
+                    color: AppTheme.black,
                   ),
-                ),
+                ],
+              ),
             ],
           ),
         ],

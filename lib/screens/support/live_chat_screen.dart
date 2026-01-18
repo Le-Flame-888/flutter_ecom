@@ -71,9 +71,9 @@ class _LiveChatScreenState extends State<LiveChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundLight,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: AppTheme.backgroundLight.withOpacity(0.9),
+        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: AppTheme.black),
@@ -85,7 +85,7 @@ class _LiveChatScreenState extends State<LiveChatScreen> {
             Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(color: AppTheme.lightGray),
+                border: Border.all(color: const Color(0xFFF3F3F3)),
               ),
               child: Stack(
                 children: [
@@ -119,13 +119,19 @@ class _LiveChatScreenState extends State<LiveChatScreen> {
                   'Sarah',
                   style: TextStyle(
                     color: AppTheme.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 14,
+                    letterSpacing: 0.5,
                   ),
                 ),
                 Text(
-                  'Support Specialist',
-                  style: TextStyle(color: AppTheme.mediumGray, fontSize: 12),
+                  'STITCH SUPPORT',
+                  style: TextStyle(
+                    color: const Color(0xFFBDBDBD),
+                    fontSize: 10,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 0.5,
+                  ),
                 ),
               ],
             ),
@@ -133,24 +139,33 @@ class _LiveChatScreenState extends State<LiveChatScreen> {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.more_vert, color: AppTheme.black),
+            icon: const Icon(Icons.more_horiz, color: AppTheme.black),
             onPressed: () {
               // Show menu with "End Chat" option
               showModalBottomSheet(
                 context: context,
+                backgroundColor: Colors.white,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+                ),
                 builder: (ctx) => Container(
-                  padding: const EdgeInsets.all(16),
-                  height: 120,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 32,
+                  ),
                   child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       ListTile(
-                        leading: const Icon(
-                          Icons.exit_to_app,
-                          color: Colors.red,
-                        ),
+                        leading: const Icon(Icons.close, color: Colors.red),
                         title: const Text(
-                          'End Chat',
-                          style: TextStyle(color: Colors.red),
+                          'END CHAT SESSION',
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 13,
+                            letterSpacing: 0.5,
+                          ),
                         ),
                         onTap: () {
                           Navigator.pop(ctx);
@@ -223,26 +238,27 @@ class _LiveChatScreenState extends State<LiveChatScreen> {
                               : CrossAxisAlignment.start,
                           children: [
                             Container(
-                              padding: const EdgeInsets.all(12),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 16,
+                              ),
                               decoration: BoxDecoration(
                                 color: isUser
                                     ? AppTheme.primaryColor
-                                    : AppTheme.lightGray,
+                                    : const Color(0xFFF9F9F9),
                                 borderRadius: BorderRadius.only(
-                                  topLeft: const Radius.circular(12),
-                                  topRight: const Radius.circular(12),
-                                  bottomLeft: Radius.circular(isUser ? 12 : 4),
-                                  bottomRight: Radius.circular(isUser ? 4 : 12),
+                                  topLeft: const Radius.circular(24),
+                                  topRight: const Radius.circular(24),
+                                  bottomLeft: Radius.circular(isUser ? 24 : 4),
+                                  bottomRight: Radius.circular(isUser ? 4 : 24),
                                 ),
                               ),
                               child: Text(
                                 msg['message'],
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: AppTheme.black,
-                                  fontSize: 15,
-                                  fontWeight: isUser
-                                      ? FontWeight.w500
-                                      : FontWeight.normal,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700,
                                 ),
                               ),
                             ),

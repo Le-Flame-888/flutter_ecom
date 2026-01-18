@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import '../widgets/product_card.dart';
 import '../providers/product_provider.dart';
 import '../theme/app_theme.dart';
-import '../widgets/empty_state.dart';
 import 'product_detail_screen.dart';
 
 class WishlistScreen extends StatelessWidget {
@@ -20,18 +19,24 @@ class WishlistScreen extends StatelessWidget {
         .toList();
 
     return Scaffold(
-      backgroundColor: AppTheme.backgroundLight,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text(
-          'My Wishlist',
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            fontWeight: FontWeight.bold,
+        title: const Text(
+          'YOUR WISHLIST',
+          style: TextStyle(
             color: AppTheme.black,
+            fontWeight: FontWeight.w900,
+            fontSize: 14,
+            letterSpacing: 2,
           ),
         ),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         elevation: 0,
-        centerTitle: false,
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: AppTheme.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
@@ -42,14 +47,14 @@ class WishlistScreen extends StatelessWidget {
                   vertical: 6,
                 ),
                 decoration: BoxDecoration(
-                  gradient: AppTheme.primaryGradient,
-                  borderRadius: BorderRadius.circular(AppTheme.radiusFull),
+                  color: AppTheme.primaryColor,
+                  borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
-                  '${favoriteProducts.length} items',
+                  '${favoriteProducts.length}',
                   style: const TextStyle(
                     color: AppTheme.black,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w900,
                     fontSize: 12,
                   ),
                 ),
@@ -59,54 +64,105 @@ class WishlistScreen extends StatelessWidget {
         ],
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: AppTheme.spacing8),
-            // Grid or Empty State
-            Expanded(
-              child: favoriteProducts.isEmpty
-                  ? EmptyState(
-                      icon: Icons.favorite_border,
-                      title: 'No Favorites Yet',
-                      message:
-                          'Start adding products to your wishlist by tapping the heart icon!',
-                      actionText: 'Browse Products',
-                      onAction: () {
-                        Navigator.of(
-                          context,
-                        ).pop(); // Go back to where we came from (Home or Catalog)
-                      },
-                    )
-                  : GridView.builder(
-                      padding: const EdgeInsets.all(AppTheme.spacing16),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: 0.7,
-                            crossAxisSpacing: 16,
-                            mainAxisSpacing: 16,
+        child: favoriteProducts.isEmpty
+            ? SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 60),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 120,
+                        height: 120,
+                        decoration: const BoxDecoration(
+                          color: Color(0xFFF9F9F9),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.favorite_border,
+                          size: 40,
+                          color: Color(0xFFBDBDBD),
+                        ),
+                      ),
+                      const SizedBox(height: 32),
+                      const Text(
+                        'NO FAVORITES YET',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w900,
+                          color: AppTheme.black,
+                          letterSpacing: 1,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      const Text(
+                        'Tap the heart icon on any product\nto save it here for later.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color(0xFFBDBDBD),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 48),
+                      ElevatedButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppTheme.black,
+                          foregroundColor: AppTheme.primaryColor,
+                          minimumSize: const Size(220, 60),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
                           ),
-                      itemCount: favoriteProducts.length,
-                      itemBuilder: (context, index) {
-                        return ProductCard(
-                          product: favoriteProducts[index],
-                          onTap: () {
-                            Navigator.of(context).pushNamed(
-                              ProductDetailScreen.routeName,
-                              arguments: favoriteProducts[index],
-                            );
-                          },
-                          onFavoriteToggle: () {
-                            productProvider.toggleFavoriteStatus(
-                              favoriteProducts[index].id,
-                            );
-                          },
-                        );
-                      },
-                    ),
-            ),
-          ],
-        ),
+                          elevation: 0,
+                        ),
+                        child: const Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              'START BROWSING',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w900,
+                                fontSize: 13,
+                                letterSpacing: 1,
+                              ),
+                            ),
+                            SizedBox(width: 8),
+                            Icon(Icons.arrow_forward, size: 16),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            : GridView.builder(
+                padding: const EdgeInsets.all(24),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.68,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 24,
+                ),
+                itemCount: favoriteProducts.length,
+                itemBuilder: (context, index) {
+                  return ProductCard(
+                    product: favoriteProducts[index],
+                    onTap: () {
+                      Navigator.of(context).pushNamed(
+                        ProductDetailScreen.routeName,
+                        arguments: favoriteProducts[index],
+                      );
+                    },
+                    onFavoriteToggle: () {
+                      productProvider.toggleFavoriteStatus(
+                        favoriteProducts[index].id,
+                      );
+                    },
+                  );
+                },
+              ),
       ),
     );
   }

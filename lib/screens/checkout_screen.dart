@@ -23,122 +23,235 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     final total = cart.totalAmount;
 
     return Scaffold(
-      backgroundColor: AppTheme.backgroundLight,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text(
-          'Checkout',
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            fontWeight: FontWeight.bold,
+        title: const Text(
+          'CHECKOUT',
+          style: TextStyle(
             color: AppTheme.black,
+            fontWeight: FontWeight.w900,
+            fontSize: 14,
+            letterSpacing: 1,
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         elevation: 0,
-        leading: const BackButton(color: AppTheme.black),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: AppTheme.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Shipping Address
-              Text(
-                'Shipping Address',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: AppTheme.black,
-                ),
-              ),
-              const SizedBox(height: 16),
-              _buildTextField('Full Name', Icons.person_outline),
-              const SizedBox(height: 12),
-              _buildTextField('Address', Icons.location_on_outlined),
-              const SizedBox(height: 12),
+              const SizedBox(height: 24),
+
+              // Shipping Address Header
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(child: _buildTextField('City', Icons.location_city)),
-                  const SizedBox(width: 12),
-                  Expanded(child: _buildTextField('Zip Code', Icons.numbers)),
+                  const Text(
+                    'SHIPPING ADDRESS',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w900,
+                      color: AppTheme.black,
+                      letterSpacing: 1,
+                    ),
+                  ),
+                  TextButton.icon(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.edit,
+                      size: 14,
+                      color: Color(0xFF4CAF50),
+                    ),
+                    label: const Text(
+                      'Change',
+                      style: TextStyle(
+                        color: Color(0xFF4CAF50),
+                        fontWeight: FontWeight.w900,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
                 ],
               ),
-
-              const SizedBox(height: 32),
-
-              // Payment Method
-              Text(
-                'Payment Method',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: AppTheme.black,
-                ),
-              ),
-              const SizedBox(height: 16),
-              _buildPaymentOption(0, 'Credit Card', Icons.credit_card),
               const SizedBox(height: 12),
-              _buildPaymentOption(1, 'PayPal', Icons.payment),
 
-              const SizedBox(height: 48),
-
-              // Order Summary
+              // Address Card (Stitch Style)
               Container(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
-                  color: AppTheme.whiteColor,
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: AppTheme.lightGray),
-                  boxShadow: AppTheme.shadowSm,
+                  color: const Color(0xFFF9F9F9),
+                  borderRadius: BorderRadius.circular(24),
                 ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      'Total Amount',
-                      style: TextStyle(fontSize: 16, color: AppTheme.darkGray),
+                    Container(
+                      width: 48,
+                      height: 48,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.location_on,
+                        color: Color(0xFF4CAF50),
+                      ),
                     ),
-                    Text(
-                      '\$${total.toStringAsFixed(2)}',
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: AppTheme.primaryColor,
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Home Office',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 16,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            '123 Fashion Ave, Suite 402\nNew York, NY 10001',
+                            style: TextStyle(
+                              color: AppTheme.mediumGray,
+                              fontSize: 14,
+                              height: 1.4,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
               ),
 
-              const SizedBox(height: 24),
+              const SizedBox(height: 32),
 
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Navigate to confirmation
-                    cart.clearCart();
-                    Navigator.of(
-                      context,
-                    ).pushReplacementNamed(ConfirmationScreen.routeName);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppTheme.black,
-                    foregroundColor: AppTheme.primaryColor,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    elevation: 0,
-                  ),
-                  child: const Text(
-                    'Place Order',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
+              // Payment Method Header
+              const Text(
+                'PAYMENT METHOD',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w900,
+                  color: AppTheme.black,
+                  letterSpacing: 1,
                 ),
               ),
+              const SizedBox(height: 20),
+
+              _buildPaymentOption(
+                0,
+                'Credit Card',
+                Icons.credit_card,
+                '**** **** **** 4242',
+              ),
+              const SizedBox(height: 12),
+              _buildPaymentOption(
+                1,
+                'PayPal',
+                Icons.payment,
+                'fashion.enthusiast@email.com',
+              ),
+
+              const SizedBox(height: 40),
+
+              // Order Summary Card
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  color: AppTheme.black,
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'TOTAL AMOUNT',
+                          style: TextStyle(
+                            color: Colors.white54,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: 1,
+                          ),
+                        ),
+                        Text(
+                          '\$${total.toStringAsFixed(2)}',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    const Divider(color: Colors.white10),
+                    const SizedBox(height: 16),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.shield_outlined,
+                          color: Color(0xFF4CAF50),
+                          size: 16,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Secure encrypted payment',
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.5),
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 40),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.fromLTRB(24, 0, 24, 32),
+        child: ElevatedButton(
+          onPressed: () {
+            cart.clearCart();
+            Navigator.of(
+              context,
+            ).pushReplacementNamed(ConfirmationScreen.routeName);
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppTheme.primaryColor,
+            foregroundColor: AppTheme.black,
+            minimumSize: const Size(double.infinity, 64),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(32),
+            ),
+            elevation: 8,
+            shadowColor: AppTheme.primaryColor.withOpacity(0.4),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                'Place Order',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+              ),
+              SizedBox(width: 12),
+              Icon(Icons.arrow_forward),
             ],
           ),
         ),
@@ -146,78 +259,77 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     );
   }
 
-  Widget _buildTextField(String label, IconData icon) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppTheme.whiteColor,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: AppTheme.shadowSm,
-      ),
-      child: TextFormField(
-        decoration: InputDecoration(
-          labelText: label,
-          prefixIcon: Icon(icon, color: AppTheme.mediumGray),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide.none,
-          ),
-          filled: true,
-          fillColor: AppTheme.whiteColor,
-          contentPadding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 16,
-          ),
-          labelStyle: const TextStyle(color: AppTheme.mediumGray),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildPaymentOption(int value, String title, IconData icon) {
+  Widget _buildPaymentOption(
+    int value,
+    String title,
+    IconData icon,
+    String subtitle,
+  ) {
     final isSelected = _selectedPayment == value;
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          _selectedPayment = value;
-        });
-      },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.all(16),
+      onTap: () => setState(() => _selectedPayment = value),
+      child: Container(
+        padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
-          color: AppTheme.whiteColor,
-          borderRadius: BorderRadius.circular(16),
+          color: isSelected ? Colors.white : const Color(0xFFF9F9F9),
+          borderRadius: BorderRadius.circular(24),
           border: Border.all(
-            color: isSelected ? AppTheme.primaryColor : AppTheme.lightGray,
+            color: isSelected ? AppTheme.primaryColor : Colors.transparent,
             width: 2,
           ),
-          boxShadow: isSelected
-              ? [
-                  BoxShadow(
-                    color: AppTheme.primaryColor.withOpacity(0.2),
-                    blurRadius: 10,
-                    offset: const Offset(0, 4),
-                  ),
-                ]
-              : AppTheme.shadowSm,
         ),
         child: Row(
           children: [
-            Icon(
-              icon,
-              color: isSelected ? AppTheme.black : AppTheme.mediumGray,
-            ),
-            const SizedBox(width: 16),
-            Text(
-              title,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: isSelected ? AppTheme.black : AppTheme.darkGray,
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: isSelected ? const Color(0xFFF9FFF5) : Colors.white,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(
+                icon,
+                color: isSelected ? AppTheme.primaryColor : AppTheme.mediumGray,
               ),
             ),
-            const Spacer(),
-            if (isSelected)
-              const Icon(Icons.check_circle, color: AppTheme.primaryColor),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    subtitle,
+                    style: TextStyle(color: AppTheme.mediumGray, fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: 24,
+              height: 24,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: isSelected ? AppTheme.primaryColor : Colors.white,
+                border: Border.all(
+                  color: isSelected
+                      ? AppTheme.primaryColor
+                      : const Color(0xFFE0E0E0),
+                  width: 2,
+                ),
+              ),
+              child: isSelected
+                  ? const Center(
+                      child: Icon(Icons.check, size: 16, color: AppTheme.black),
+                    )
+                  : null,
+            ),
           ],
         ),
       ),
