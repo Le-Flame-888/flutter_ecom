@@ -146,10 +146,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     ),
                   ),
                   validator: (value) {
-                    if (value == null || value.isEmpty)
+                    if (value == null || value.isEmpty) {
                       return 'Please enter your email';
-                    if (!value.contains('@'))
+                    }
+                    if (!value.contains('@')) {
                       return 'Please enter a valid email';
+                    }
                     return null;
                   },
                 ),

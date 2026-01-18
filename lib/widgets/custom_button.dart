@@ -75,7 +75,7 @@ class _CustomButtonState extends State<CustomButton>
       onTapCancel: isDisabled ? null : _handleTapCancel,
       child: ScaleTransition(
         scale: _scaleAnimation,
-        child: Container(
+        child: SizedBox(
           width: widget.fullWidth ? double.infinity : widget.width,
           height: widget.height ?? 56,
           child: ElevatedButton(

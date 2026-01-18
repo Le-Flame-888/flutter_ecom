@@ -125,8 +125,9 @@ class _AuthScreenState extends State<AuthScreen> {
                           hint: 'name@example.com',
                           icon: null,
                           validator: (value) {
-                            if (value == null || value.isEmpty)
+                            if (value == null || value.isEmpty) {
                               return 'Enter email';
+                            }
                             return null;
                           },
                         ),
@@ -145,8 +146,9 @@ class _AuthScreenState extends State<AuthScreen> {
                             });
                           },
                           validator: (value) {
-                            if (value == null || value.isEmpty)
+                            if (value == null || value.isEmpty) {
                               return 'Enter password';
+                            }
                             return null;
                           },
                         ),

@@ -126,8 +126,9 @@ class _SignupScreenState extends State<SignupScreen> {
                           controller: _emailController,
                           hint: 'name@example.com',
                           validator: (value) {
-                            if (value == null || value.isEmpty)
+                            if (value == null || value.isEmpty) {
                               return 'Enter email';
+                            }
                             if (!value.contains('@')) return 'Invalid email';
                             return null;
                           },
@@ -146,8 +147,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             });
                           },
                           validator: (value) {
-                            if (value == null || value.isEmpty)
+                            if (value == null || value.isEmpty) {
                               return 'Enter password';
+                            }
                             if (value.length < 6) return 'Min 6 characters';
                             return null;
                           },
@@ -161,8 +163,9 @@ class _SignupScreenState extends State<SignupScreen> {
                           isPassword: true,
                           obscureText: _obscurePassword,
                           validator: (value) {
-                            if (value != _passwordController.text)
+                            if (value != _passwordController.text) {
                               return 'Passwords do not match';
+                            }
                             return null;
                           },
                         ),
