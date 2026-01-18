@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>OTP Verification</title>
+<!-- Tailwind CSS with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#97ec27",
+              "background-light": "#ffffff",
+              "background-dark": "#1a1a1a",
+            },
+            fontFamily: {
+              "display": ["Public Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: "Public Sans", sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Hide arrows in number inputs */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex justify-center">
+<!-- Mobile Container (Simulated iOS) -->
+<div class="relative flex h-full min-h-screen w-full max-w-[430px] flex-col bg-background-light dark:bg-background-dark overflow-x-hidden shadow-2xl">
+<!-- TopAppBar -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between">
+<button aria-label="Go back" class="text-zinc-900 dark:text-zinc-100 flex size-12 shrink-0 items-center justify-start focus:outline-none">
+<span class="material-symbols-outlined text-3xl">arrow_back</span>
+</button>
+<div class="w-12"></div> <!-- Spacer to center title if needed -->
+</div>
+<div class="flex-grow flex flex-col px-6">
+<!-- HeadlineText -->
+<div class="pt-8 pb-2">
+<h1 class="text-zinc-900 dark:text-zinc-100 tracking-tight text-[32px] font-bold leading-tight text-left">
+                    Verification Code
+                </h1>
+</div>
+<!-- BodyText -->
+<div class="pt-1 pb-10">
+<p class="text-zinc-500 dark:text-zinc-400 text-[16px] font-normal leading-relaxed">
+                    Please enter the 4-digit code sent to <span class="text-zinc-900 dark:text-zinc-100 font-medium">alex@email.com</span>
+</p>
+</div>
+<!-- ConfirmationCode (Modified for 4-digit square boxes) -->
+<div class="flex justify-start py-6">
+<fieldset class="relative flex gap-4">
+<!-- Square Box 1 -->
+<input autofocus="" class="flex h-[72px] w-[72px] text-center text-2xl font-semibold bg-zinc-50 dark:bg-zinc-800 rounded-lg border-2 border-zinc-100 dark:border-zinc-700 focus:border-primary focus:ring-0 focus:outline-none transition-colors text-zinc-900 dark:text-zinc-100" max="9" maxlength="1" min="0" onkeyup="if(this.value.length==1) this.nextElementSibling.focus()" type="number" value=""/>
+<!-- Square Box 2 -->
+<input class="flex h-[72px] w-[72px] text-center text-2xl font-semibold bg-zinc-50 dark:bg-zinc-800 rounded-lg border-2 border-zinc-100 dark:border-zinc-700 focus:border-primary focus:ring-0 focus:outline-none transition-colors text-zinc-900 dark:text-zinc-100" max="9" maxlength="1" min="0" onkeyup="if(this.value.length==1) this.nextElementSibling.focus(); if(event.key=='Backspace') this.previousElementSibling.focus()" type="number" value=""/>
+<!-- Square Box 3 -->
+<input class="flex h-[72px] w-[72px] text-center text-2xl font-semibold bg-zinc-50 dark:bg-zinc-800 rounded-lg border-2 border-zinc-100 dark:border-zinc-700 focus:border-primary focus:ring-0 focus:outline-none transition-colors text-zinc-900 dark:text-zinc-100" max="9" maxlength="1" min="0" onkeyup="if(this.value.length==1) this.nextElementSibling.focus(); if(event.key=='Backspace') this.previousElementSibling.focus()" type="number" value=""/>
+<!-- Square Box 4 -->
+<input class="flex h-[72px] w-[72px] text-center text-2xl font-semibold bg-zinc-50 dark:bg-zinc-800 rounded-lg border-2 border-zinc-100 dark:border-zinc-700 focus:border-primary focus:ring-0 focus:outline-none transition-colors text-zinc-900 dark:text-zinc-100" max="9" maxlength="1" min="0" onkeyup="if(event.key=='Backspace') this.previousElementSibling.focus()" type="number" value=""/>
+</fieldset>
+</div>
+<!-- MetaText / Resend Link -->
+<div class="pt-6 pb-12 flex justify-start">
+<button class="text-zinc-500 dark:text-zinc-400 text-sm font-medium hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors flex items-center gap-1 group">
+                    Didn't receive code? 
+                    <span class="text-zinc-900 dark:text-zinc-100 border-b border-zinc-900 dark:border-zinc-100 group-hover:border-primary">Resend Code</span>
+</button>
+</div>
+<!-- Bottom Spacer for alignment -->
+<div class="mt-auto pb-10">
+<!-- Primary Action Button -->
+<button class="w-full bg-primary py-4 rounded-xl text-zinc-900 font-bold text-lg shadow-[0_4px_20px_rgba(151,236,39,0.3)] hover:brightness-105 active:scale-[0.98] transition-all">
+                    Verify
+                </button>
+</div>
+</div>
+<!-- Visual Decoration (Geometric Accent) -->
+<div class="absolute -right-20 top-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -left-10 bottom-40 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none"></div>
+</div>
+</body></html>

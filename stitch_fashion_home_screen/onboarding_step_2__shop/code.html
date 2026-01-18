@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Onboarding Step 2: Shop</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#b0ff57",
+                        "background-light": "#ffffff",
+                        "background-dark": "#121417",
+                        "soft-grey": "#8B8B8B",
+                        "accent-dark": "#1a1d21",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .hero-mask {
+            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-accent-dark dark:text-white antialiased">
+<div class="relative flex h-screen w-full flex-col overflow-hidden max-w-[430px] mx-auto border-x border-gray-100 dark:border-zinc-800 shadow-2xl">
+<!-- Top App Bar / Skip -->
+<div class="flex items-center justify-end px-6 pt-12 pb-2">
+<button class="text-soft-grey text-sm font-semibold tracking-wide hover:text-primary transition-colors">
+                Skip
+            </button>
+</div>
+<!-- Hero Visual Area -->
+<div class="relative flex-1 flex items-center justify-center px-6 mt-4">
+<div class="relative w-full h-full max-h-[420px] rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 group shadow-inner">
+<!-- Abstract Design Elements for visual depth -->
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
+<!-- Main Image -->
+<div class="w-full h-full bg-center bg-no-repeat bg-cover transform transition-transform duration-700 group-hover:scale-105" data-alt="Modern mobile screen showing fashion checkout success" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAeNBf5rwawToBjwDip9OQKBpPOlVwHTBDNTH0isAn7Gy1I-Xy-vP_pt27YnovrzlanouXyRCggKYuWm1DOeHk8cVR-_bdfUryyPv1Oeo5Vn0q-WuDrBHYoImXWGO0K6LvOutyZnhIA7akRh7LMdPOtImfsMQmh7UkwnQLhP_C2tiu7Wvs79dVijtn3tvLfQaJ130CL3Xp3GPpYKLP5KItykqGsubhlzVn5C6iEFd0nDatmp_VzwXQggbmZsgYAClnFEwCWSzuUQFn9");'>
+</div>
+<!-- Floating UI element simulation -->
+<div class="absolute bottom-8 right-8 bg-white dark:bg-accent-dark p-3 rounded-lg shadow-xl flex items-center gap-3 border border-gray-100 dark:border-zinc-700">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-black font-bold">check</span>
+</div>
+<div>
+<p class="text-[10px] font-bold text-soft-grey uppercase tracking-wider">Order Status</p>
+<p class="text-xs font-bold dark:text-white">Payment Successful</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Content Section -->
+<div class="px-8 pt-8 pb-4 flex flex-col items-center">
+<h1 class="text-[#151d0c] dark:text-white tracking-tight text-3xl font-extrabold leading-tight text-center mb-4">
+                Seamless Shopping Experience
+            </h1>
+<p class="text-soft-grey text-base font-normal leading-relaxed text-center max-w-[300px]">
+                Add items to your cart and checkout in just a few taps with our secure system.
+            </p>
+</div>
+<!-- Page Indicators -->
+<div class="flex w-full flex-row items-center justify-center gap-2 py-6">
+<div class="h-1.5 w-1.5 rounded-full bg-zinc-200 dark:bg-zinc-700"></div>
+<div class="h-1.5 w-6 rounded-full bg-primary"></div>
+<div class="h-1.5 w-1.5 rounded-full bg-zinc-200 dark:bg-zinc-700"></div>
+</div>
+<!-- Footer / Primary Action -->
+<div class="px-6 pb-12 pt-2">
+<button class="w-full bg-primary hover:bg-[#9eed4a] text-black font-bold py-5 rounded-xl shadow-[0_8px_20px_-4px_rgba(176,255,87,0.4)] transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+<span>Next</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+<!-- iOS Home Indicator Spacing -->
+<div class="h-2 w-full"></div>
+</div>
+</body></html>

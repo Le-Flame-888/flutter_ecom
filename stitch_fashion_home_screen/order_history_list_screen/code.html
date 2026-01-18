@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#b0ff57",
+                        "background-light": "#ffffff",
+                        "background-dark": "#262c21",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#151d0c] dark:text-white antialiased">
+<div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto overflow-x-hidden border-x border-gray-100 dark:border-gray-800">
+<!-- TopAppBar -->
+<div class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="flex items-center p-4 pb-2 justify-between">
+<div class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10 cursor-pointer">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center">My Orders</h2>
+<div class="size-10"></div> <!-- Spacer for centering -->
+</div>
+<!-- Tabs -->
+<div class="px-4">
+<div class="flex border-b border-gray-100 dark:border-white/10 justify-between">
+<a class="flex flex-col items-center justify-center border-b-2 border-primary pb-3 pt-4 flex-1" href="#">
+<p class="text-sm font-bold tracking-tight">Active</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-gray-400 pb-3 pt-4 flex-1" href="#">
+<p class="text-sm font-semibold tracking-tight">Completed</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-gray-400 pb-3 pt-4 flex-1" href="#">
+<p class="text-sm font-semibold tracking-tight">Cancelled</p>
+</a>
+</div>
+</div>
+</div>
+<!-- Order List Content -->
+<div class="flex flex-col gap-4 p-4 pb-20">
+<!-- Order Card 1 (Active/Processing) -->
+<div class="bg-white dark:bg-white/5 rounded-xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-50 dark:border-white/5">
+<div class="flex justify-between items-start mb-3">
+<div class="flex flex-col">
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">Order ID</span>
+<p class="text-lg font-bold tracking-tight">#ORD-8842</p>
+<p class="text-sm text-gray-400 mt-1">Today, 2:45 PM</p>
+</div>
+<span class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold rounded-full">Processing</span>
+</div>
+<!-- Product Thumbnails Horizontal Scroll -->
+<div class="flex gap-3 overflow-x-auto no-scrollbar py-2">
+<div class="shrink-0 w-20 h-20 rounded-lg bg-gray-100 dark:bg-white/10 bg-center bg-cover border border-gray-50 dark:border-white/5" data-alt="Modern streetwear lime green hoodie" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCkjOZBEVyb3X2OkdJC16R89-bjZG8gfGzDYfG_bPsiHnoTFIO0RuCE5-1cJNNivul5TqakmODIuRjlRd7nGLYpn2wKOyrXUGOIcUzX9M9T4PvWCvAkPyqXGSCKwRKbKb9NNy20XsVd4BrWpGNXcn4UDlKLvwfdM9lofrFpAa7jc5QRehsQEZL2pSDdB3bGgF-8VxWHXbzF5IVSRWQxSQSQlthHVtr5LIEwSwaTqH5f7L3I0F-wzc33uMR_BZcthjhn9pz4EXWpNXKe");'></div>
+<div class="shrink-0 w-20 h-20 rounded-lg bg-gray-100 dark:bg-white/10 bg-center bg-cover border border-gray-50 dark:border-white/5" data-alt="Black minimalist cotton t-shirt" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA3uJ387G8306fpsv-NNNmNwHhDO3Lhy70Shox2IboMy-bjHtfItzKjKjpuxH6mMr3XEJk3hVJSiWH9hRDMWPY13K_-F2rGdg68HeZonmwV0Z4fFseFCzDKoYD0HPR7gcO3Rb14341KRv4FRIIJ7i1YGlkBX5a5gwPvGVtyDeILzc5HuTi5Go2M4-3swA8vH0Rl-zH5sEONVuUtJMzEua16vMpYL2_3dJEPATwwZtp2ARjeqc0pQptDiAt8rBTvB48JqHubHTTNExQY");'></div>
+<div class="shrink-0 w-20 h-20 rounded-lg bg-gray-100 dark:bg-white/10 bg-center bg-cover border border-gray-50 dark:border-white/5" data-alt="Red sport sneakers side view" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAljGXF0KJlMhmFwWACsvxXy7VfScz99HUFwWRLU-n1G-10QrYJYRs--QjsDsF1k76d1bL-iYjPVBEUJ4dXhprJbEjabw0_HqSXbiZ4Pns88NTbFBDyXzFU5KyhrElp5NlZ5fsHYr8TMfv7UzAG_tpCGJPUJ32euUVFNiU1KS_pba4GazWOiWf-0rjt9BeKGcAEaqOUCezHZPTWVHfMTO9Wh5E9Onw32P307ugU8aLj0QV485r7QwCmvh8jkADKRAbOXJ8WA1Zi3Mtl");'></div>
+<div class="shrink-0 w-20 h-20 flex items-center justify-center rounded-lg bg-gray-50 dark:bg-white/5 border border-dashed border-gray-200 dark:border-white/10">
+<span class="text-xs font-bold text-gray-400">+1 more</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex gap-3 mt-5">
+<button class="flex-1 h-12 rounded-xl bg-gray-100 dark:bg-white/10 text-sm font-bold tracking-tight hover:bg-gray-200 dark:hover:bg-white/20 transition-colors">
+                        View Details
+                    </button>
+<button class="flex-1 h-12 rounded-xl bg-primary text-[#151d0c] text-sm font-bold tracking-tight hover:opacity-90 transition-opacity">
+                        Track Order
+                    </button>
+</div>
+</div>
+<!-- Order Card 2 (Delivered/Completed) -->
+<div class="bg-white dark:bg-white/5 rounded-xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-50 dark:border-white/5 opacity-90">
+<div class="flex justify-between items-start mb-3">
+<div class="flex flex-col">
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">Order ID</span>
+<p class="text-lg font-bold tracking-tight">#ORD-7721</p>
+<p class="text-sm text-gray-400 mt-1">Oct 24, 2023</p>
+</div>
+<span class="px-3 py-1 bg-primary/20 text-[#76a145] dark:text-primary text-xs font-bold rounded-full">Delivered</span>
+</div>
+<!-- Product Thumbnails -->
+<div class="flex gap-3 overflow-x-auto no-scrollbar py-2">
+<div class="shrink-0 w-20 h-20 rounded-lg bg-gray-100 dark:bg-white/10 bg-center bg-cover border border-gray-50 dark:border-white/5" data-alt="Fashionable winter trench coat" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA1WB-5GIeZlQc3oduugjqQ6OTp0_-evZ2Evz1jpcItEh3cq-jaBrQBH0ZQTaG6DfR8nMM4Ek5dVFO5t5VXLOzOkJsTzpeGlbD79klXHcjYTEEyle9M6mwSph8DXTPRxwNp9EKWA2v7uQxSzqcd1l1P4lDDI1gCqf_wjgYD2cmnC1XJac4mni_S65toZ9EVTswcrv-8gZXIVgZSFQjXsRwcngevYUtkFKaq1NSEw8tOfCIfuGtubShjfIHURVUtNiGx2-YLVxksQyg2");'></div>
+<div class="shrink-0 w-20 h-20 rounded-lg bg-gray-100 dark:bg-white/10 bg-center bg-cover border border-gray-50 dark:border-white/5" data-alt="Blue denim shorts lifestyle photo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAJgFahjWAT8QigRDUX2Q0Zy_TKkdiJAeFyv-92VPFug21rqZNLmwh7vw1So090AYVLX8Ul_l2Y697lviqZf1Pp4gGwy_AWbAzQYbAIMG2nZsrLCRTe7M6n0YFu8uSaCHn4UQenrfmGdhoQRggOCZKzOylSKq28GvWR3MAs9enEl_IC2CExvDCurtjDQPz4al_2u1q2RfutYyJB-YvPBcsSPLylgveIl41k7AP-OrUNqzEl3vkgbXZjZIeb997-JalrZjCAKRBWKv3A");'></div>
+</div>
+<div class="flex gap-3 mt-5">
+<button class="flex-1 h-12 rounded-xl bg-gray-100 dark:bg-white/10 text-sm font-bold tracking-tight">
+                        View Details
+                    </button>
+<button class="flex-1 h-12 rounded-xl bg-primary text-[#151d0c] text-sm font-bold tracking-tight">
+                        Reorder
+                    </button>
+</div>
+</div>
+<!-- Order Card 3 (Shipping) -->
+<div class="bg-white dark:bg-white/5 rounded-xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-50 dark:border-white/5">
+<div class="flex justify-between items-start mb-3">
+<div class="flex flex-col">
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">Order ID</span>
+<p class="text-lg font-bold tracking-tight">#ORD-9012</p>
+<p class="text-sm text-gray-400 mt-1">Oct 20, 2023</p>
+</div>
+<span class="px-3 py-1 bg-yellow-50 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 text-xs font-bold rounded-full">In Transit</span>
+</div>
+<div class="flex gap-3 overflow-x-auto no-scrollbar py-2">
+<div class="shrink-0 w-20 h-20 rounded-lg bg-gray-100 dark:bg-white/10 bg-center bg-cover border border-gray-50 dark:border-white/5" data-alt="Bright green running shoes" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD9Eoy6-3WZ7rHBTPgeQShBefJHNvws2wCbUdPu9t_RiA7r5tIWR2-AzWXqisM4ILIyz8WX1fdxxnM6cWCYPfHb5__t2U5lF8Fw2uyvevd63cxoi1gt185D7vYVAJvDD4qMvHSSIPiZTSOGw5jPWPsOmMqOOpABeq9yzhhmsOievpVNFBEkPd25WJTLNPZkqpgCmgmCMMNhAQB5CqYCfIyyBnYO5h_pwPIj8Sa8SETZocNp-wZKROpwlBOkSS_4uLxspTpN4D_bjQdf");'></div>
+</div>
+<div class="flex gap-3 mt-5">
+<button class="flex-1 h-12 rounded-xl bg-gray-100 dark:bg-white/10 text-sm font-bold tracking-tight">
+                        View Details
+                    </button>
+<button class="flex-1 h-12 rounded-xl bg-primary text-[#151d0c] text-sm font-bold tracking-tight">
+                        Track
+                    </button>
+</div>
+</div>
+</div>
+<!-- Floating Navigation Bar (Simulated Mobile) -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-[360px] bg-[#151d0c] dark:bg-white rounded-full p-2 flex justify-around items-center shadow-xl">
+<div class="size-10 flex items-center justify-center text-white/50 dark:text-black/40">
+<span class="material-symbols-outlined">home</span>
+</div>
+<div class="size-10 flex items-center justify-center text-white/50 dark:text-black/40">
+<span class="material-symbols-outlined">search</span>
+</div>
+<div class="size-12 flex items-center justify-center bg-primary rounded-full text-[#151d0c]">
+<span class="material-symbols-outlined font-bold">shopping_bag</span>
+</div>
+<div class="size-10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">receipt_long</span>
+</div>
+<div class="size-10 flex items-center justify-center text-white/50 dark:text-black/40">
+<span class="material-symbols-outlined">person</span>
+</div>
+</div>
+</div>
+</body></html>

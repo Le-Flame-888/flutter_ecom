@@ -122,4 +122,12 @@ class ProductProvider with ChangeNotifier {
   Product findById(String id) {
     return _products.firstWhere((prod) => prod.id == id);
   }
+
+  void toggleFavoriteStatus(String id) {
+    final productIndex = _products.indexWhere((prod) => prod.id == id);
+    if (productIndex >= 0) {
+      _products[productIndex].isFavorite = !_products[productIndex].isFavorite;
+      notifyListeners();
+    }
+  }
 }

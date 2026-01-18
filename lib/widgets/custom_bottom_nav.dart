@@ -13,94 +13,130 @@ class CustomBottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Container(
-      color: Colors.transparent,
-      padding: const EdgeInsets.only(left: 24, right: 24, bottom: 30, top: 10),
-      child: Container(
-        height: 70,
-        decoration: BoxDecoration(
-          color: AppTheme.darkBlack,
-          borderRadius: BorderRadius.circular(35),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              blurRadius: 20,
-              offset: const Offset(0, 10),
-            ),
-          ],
+      height: 90,
+      decoration: BoxDecoration(
+        color: isDark ? AppTheme.backgroundDark : Colors.white,
+        border: Border(
+          top: BorderSide(
+            color: isDark ? AppTheme.darkGray : AppTheme.lightGray,
+            width: 1,
+          ),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _buildNavItem(0, Icons.home_outlined, Icons.home, 'Home'),
-            _buildNavItem(
-              1,
-              Icons.grid_view_outlined,
-              Icons.grid_view_rounded,
-              'Catalog',
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, -5),
+          ),
+        ],
+      ),
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildNavItem(
+                context,
+                0,
+                Icons.home_outlined,
+                Icons.home,
+                'Home',
+              ),
+              _buildNavItem(
+                context,
+                1,
+                Icons.shopping_bag_outlined,
+                Icons.shopping_bag,
+                'Cart',
+              ),
+              const SizedBox(width: 48), // Space for center button
+              _buildNavItem(
+                context,
+                3,
+                Icons.favorite_border,
+                Icons.favorite,
+                'Wishlist',
+              ),
+              _buildNavItem(
+                context,
+                4,
+                Icons.person_outline,
+                Icons.person,
+                'Profile',
+              ),
+            ],
+          ),
+          Positioned(
+            top: -24,
+            left: MediaQuery.of(context).size.width / 2 - 28,
+            child: GestureDetector(
+              onTap: () => onTap(2),
+              child: Container(
+                width: 56,
+                height: 56,
+                decoration: BoxDecoration(
+                  color: AppTheme.primaryColor,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppTheme.primaryColor.withOpacity(0.4),
+                      blurRadius: 12,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: const Icon(
+                  Icons.shopping_cart,
+                  color: AppTheme.black,
+                  size: 28,
+                ),
+              ),
             ),
-            _buildNavItem(
-              2,
-              Icons.shopping_cart_outlined,
-              Icons.shopping_cart,
-              'Cart',
-            ),
-            _buildNavItem(
-              3,
-              Icons.favorite_outline,
-              Icons.favorite,
-              'Wishlist',
-            ),
-            _buildNavItem(4, Icons.person_outline, Icons.person, 'Profile'),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
   Widget _buildNavItem(
+    BuildContext context,
     int index,
     IconData icon,
     IconData activeIcon,
     String label,
   ) {
     final isSelected = currentIndex == index;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return GestureDetector(
       onTap: () => onTap(index),
-      behavior: HitTestBehavior.opaque,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 250),
-        curve: Curves.easeOut,
-        padding: EdgeInsets.symmetric(
-          horizontal: isSelected ? 20 : 12,
-          vertical: 12,
-        ),
-        decoration: isSelected
-            ? BoxDecoration(
-                color: AppTheme.limeGreen,
-                borderRadius: BorderRadius.circular(24),
-              )
-            : null,
-        child: Row(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
               isSelected ? activeIcon : icon,
-              color: isSelected ? AppTheme.darkBlack : Colors.white,
+              color: isSelected
+                  ? (isDark ? AppTheme.primaryColor : AppTheme.black)
+                  : AppTheme.mediumGray,
               size: 24,
             ),
-            if (isSelected) ...[
-              const SizedBox(width: 8),
-              Text(
-                label,
-                style: const TextStyle(
-                  color: AppTheme.darkBlack,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14,
-                ),
+            const SizedBox(height: 4),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 10,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                color: isSelected
+                    ? (isDark ? AppTheme.primaryColor : AppTheme.black)
+                    : AppTheme.mediumGray,
               ),
-            ],
+            ),
           ],
         ),
       ),

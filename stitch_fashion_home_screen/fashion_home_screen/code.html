@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fashion Home Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#b0ff57",
+                        "background-light": "#ffffff",
+                        "background-dark": "#18181b",
+                    },
+                    fontFamily: {
+                        "display": ["Epilogue", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#151d0c] dark:text-white transition-colors duration-300">
+<div class="relative flex min-h-screen w-full max-w-[430px] mx-auto flex-col overflow-x-hidden pb-24 shadow-2xl bg-background-light dark:bg-background-dark">
+<!-- Top App Bar -->
+<div class="flex items-center px-4 pt-6 pb-2 justify-between sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-50">
+<div class="flex items-center gap-3">
+<div class="size-11 shrink-0 rounded-full border-2 border-primary overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Young woman profile picture smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBshIPnizPYPXi9u-_s9RPhNhR2zp9rr_WLpZ80LwYO4DtqaEFLILnZXgUte8OrhqB-g_IqWLQM2NV_njZaNUh3YlvG4jAOWoWGdo25AYYHAjRcNLzLU6JacadulZ8zPr1O0_Azz9RGfDfqevmqIRjBYLTP5XMiTHDUaQpGFa60BwiXaffnXIpVATJzDX8LcqiGlhcqLNPDBYGeG8EK628s46_UZ7c_UlmcrQ-WUmZc6LaN5KVv2ddcIa02wwCcVSZOFmPNTwFKUigQ"/>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1">
+<h2 class="text-[#151d0c] dark:text-white text-base font-bold leading-tight">Hey, Alex</h2>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+<p class="text-xs text-gray-500 dark:text-gray-400">Welcome back!</p>
+</div>
+</div>
+<div class="flex items-center">
+<button class="relative flex size-10 items-center justify-center rounded-full bg-gray-100 dark:bg-zinc-800">
+<span class="material-symbols-outlined text-xl">notifications</span>
+<span class="absolute top-2 right-2.5 size-2 bg-primary rounded-full border-2 border-white dark:border-background-dark"></span>
+</button>
+</div>
+</div>
+<!-- Search & Filter Bar -->
+<div class="px-4 py-4 flex gap-3">
+<div class="relative flex-1">
+<label class="flex items-center h-12 w-full bg-gray-100 dark:bg-zinc-800 rounded-xl px-4">
+<span class="material-symbols-outlined text-gray-400 mr-2">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-sm placeholder:text-gray-400" placeholder="Explore Fashion"/>
+</label>
+</div>
+<button class="flex size-12 shrink-0 items-center justify-center bg-primary rounded-xl text-black">
+<span class="material-symbols-outlined">tune</span>
+</button>
+</div>
+<!-- Hero Banner Card -->
+<div class="px-4 pb-6">
+<div class="relative h-48 w-full overflow-hidden rounded-xl bg-zinc-900 group">
+<div class="absolute inset-0 bg-cover bg-center opacity-70 group-hover:scale-105 transition-transform duration-700" data-alt="Fashion model walking on a city street" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAL2GOqBY-ZC9LqhtZ8RAyiR4O2IMo5fslWuD2m_sZ1eKEia4KaDW1z0eMLBW5CXY9nCWPkuuuPMDD3g3l0zoAblcCUb-cDBm9AgBfQNvAGh-XrrjElyeVUbZA_Io3xAx42jaNbq3Si1Wg_wwLA9dwWwswGKHyQ3yFY6KFF1OaG1JRRCPeP78XQ4cq1K3ST6Qtco52klWTClfa0HSbkTzLWSJkpIXZcpIcwxRt_y8kA7jsgPUIpdj1J5icf2xyTHCO3mcdAC4vHWhW8');"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex flex-col justify-center px-6">
+<span class="text-primary text-xs font-bold tracking-widest uppercase mb-1">Seasonal Offer</span>
+<h3 class="text-white text-2xl font-extrabold leading-tight mb-4 max-w-[180px]">Super Sale Discount Up to 50%</h3>
+<button class="w-fit px-6 py-2 bg-primary text-black text-sm font-bold rounded-full hover:bg-white transition-colors">
+                        Shop Now
+                    </button>
+</div>
+</div>
+</div>
+<!-- Category Chips -->
+<div class="flex gap-3 px-4 pb-6 overflow-x-auto">
+<button class="flex h-10 shrink-0 items-center justify-center px-6 rounded-full bg-gray-100 dark:bg-zinc-800 text-sm font-medium">
+                All
+            </button>
+<button class="flex h-10 shrink-0 items-center justify-center px-6 rounded-full bg-background-dark dark:bg-primary text-white dark:text-black text-sm font-bold">
+                Dresses
+            </button>
+<button class="flex h-10 shrink-0 items-center justify-center px-6 rounded-full bg-gray-100 dark:bg-zinc-800 text-sm font-medium">
+                Jackets
+            </button>
+<button class="flex h-10 shrink-0 items-center justify-center px-6 rounded-full bg-gray-100 dark:bg-zinc-800 text-sm font-medium">
+                Jeans
+            </button>
+<button class="flex h-10 shrink-0 items-center justify-center px-6 rounded-full bg-gray-100 dark:bg-zinc-800 text-sm font-medium">
+                Shoes
+            </button>
+</div>
+<!-- Section Header -->
+<div class="flex items-center justify-between px-4 mb-4">
+<h2 class="text-xl font-extrabold tracking-tight">Special For You</h2>
+<button class="text-sm font-semibold text-gray-500 hover:text-primary transition-colors">See All</button>
+</div>
+<!-- Product Grid -->
+<div class="grid grid-cols-2 gap-4 px-4">
+<!-- Product 1 -->
+<div class="group">
+<div class="relative aspect-square w-full mb-3 bg-gray-100 dark:bg-zinc-800 rounded-xl overflow-hidden">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Elegant satin green dress hanging" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzdrPE5x4vQjpg3XzkFzlLiBUjFzrY2BYXgPTeKxr3nxc0RRERfKNUxQVpyXBEvXfPSTTV8dE-fXDlLUW-c40bMNTT9JkNCWf_4pSc0bo3Ro0PBCQj2VbhanyG8D8is6Bno25GpOrzV4OD1QDszGdTplHTgNCXfRJADLAIipjNvGzwrHHfTjGAcXPT_88wo9RzkeQrEIpstN6DjVJZ479ANbbLBESA6u2ojUXN83XLT04CL-pdW-Ack1UeVkQ1dMSEK29-a5TO9oYr"/>
+<button class="absolute top-2 right-2 size-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur shadow-sm rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+</div>
+<h4 class="font-bold text-sm truncate">Satin Slip Dress</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-sm font-extrabold text-[#151d0c] dark:text-primary">$45.00</span>
+<span class="text-[10px] text-gray-400 line-through">$89.00</span>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="group">
+<div class="relative aspect-square w-full mb-3 bg-gray-100 dark:bg-zinc-800 rounded-xl overflow-hidden">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Floral summer maxi dress with sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjB0ETqbFJqa9REuIk3UhiYXsO3UNmqy-aK92bdzSmjdo145xUjO_ubAbXtUiTGcI8w9ZN23e4WhMpnc5HWjL6MQUAXgLlDioMnXFe3-UUiptDf6KT85ku6ysHt8ZXfMmGllBzPFqB9GKPNk3BxOGs3lZ74eNiswQJzFczM-tUT5AgOPLjcIghEgm8_7ECWGlQ0JbKqL70TMTAC5CgdrABofNfr5sIFPFyGuvH9cFA_7tLm-0ryvDOP1Em5PaeJl1zzbCXlEruli3r"/>
+<button class="absolute top-2 right-2 size-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur shadow-sm rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-lg active-icon text-red-500">favorite</span>
+</button>
+</div>
+<h4 class="font-bold text-sm truncate">Floral Maxi Dress</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-sm font-extrabold text-[#151d0c] dark:text-primary">$62.00</span>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="group">
+<div class="relative aspect-square w-full mb-3 bg-gray-100 dark:bg-zinc-800 rounded-xl overflow-hidden">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Blue denim jacket on white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0rmqXo78h2th6f3C4P-8aIXyUq18O7MEpquji8cGfhdqvqysByBIAt4xAHnbbsGbBbbHRSMPdmSZpUBJgx5EVSjUsHxpsj1PAj8SEyBNGxeuP7MyhB1IG5jvM2s5-27ldvD0fqFOF71Wuf6R1evt5dMt5J6AkFF8gorOnGNkM3q55Dyp-PWsFnMLB_DNzVgE0fxAFWdi3zdljzg9mBxL7f_R_tZ7QHA9cpCKgcr2QqpxiK6kNdmGMEazEIgsYiCgRQjyRSjIVfzg8"/>
+<button class="absolute top-2 right-2 size-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur shadow-sm rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+<div class="absolute bottom-2 left-2 px-2 py-0.5 bg-primary text-[10px] font-bold rounded">BEST SELLER</div>
+</div>
+<h4 class="font-bold text-sm truncate">Classic Denim Jacket</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-sm font-extrabold text-[#151d0c] dark:text-primary">$78.00</span>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="group">
+<div class="relative aspect-square w-full mb-3 bg-gray-100 dark:bg-zinc-800 rounded-xl overflow-hidden">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Folded high-waisted blue jeans" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvIe7HeBJKs6TpXfPWzwTthAaqcDmQpD2AKKP7Jn6f0kI4_6LiPQpJQIoIDzEz-Owv6pUCEyj9Tc08kMRDsixHeuNdWBTA1juQBFeeD8ZApyYEyaGv226-2Wj7epybgIdpUYbf0c8twO4YjfFecjZlIT9ckGX165vLpcUQqRjACM0iUZrGjIXZvNEsPgjLGXPgNu_VeAAKd_lbV5t1qxUkDDbvmBIab6rqQH0NYqHya9_XnpFPi3NwzxRbc7WWtD4KP2sYen6ON856"/>
+<button class="absolute top-2 right-2 size-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur shadow-sm rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+</div>
+<h4 class="font-bold text-sm truncate">High-Waist Jeans</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-sm font-extrabold text-[#151d0c] dark:text-primary">$55.00</span>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation -->
+<div class="fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto bg-white/90 dark:bg-background-dark/90 backdrop-blur-xl border-t border-gray-100 dark:border-zinc-800 px-6 py-4 flex items-center justify-between z-50">
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined active-icon text-zinc-900 dark:text-white">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400 group">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">local_mall</span>
+<span class="text-[10px] font-bold">Cart</span>
+</button>
+<button class="relative -top-6 flex size-14 items-center justify-center bg-primary rounded-full shadow-lg shadow-primary/40 text-black">
+<span class="material-symbols-outlined active-icon text-2xl">shopping_bag</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400 group">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">favorite</span>
+<span class="text-[10px] font-bold">Wishlist</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400 group">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">person</span>
+<span class="text-[10px] font-bold">Profile</span>
+</button>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#b5ff4d",
+                        "background-light": "#ffffff",
+                        "background-dark": "#242428",
+                    },
+                    fontFamily: {
+                        "display": ["Epilogue", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Epilogue', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#161d0c] dark:text-white transition-colors duration-300">
+<div class="relative flex h-screen w-full flex-col overflow-x-hidden no-scrollbar">
+<!-- TopAppBar -->
+<div class="sticky top-0 z-50 flex items-center bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md p-4 justify-between border-b border-gray-100 dark:border-gray-800">
+<div class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-2xl">arrow_back_ios_new</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">Refer a Friend</h2>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto pb-10">
+<!-- HeaderImage -->
+<div class="@container px-4 pt-4">
+<div class="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden bg-gray-100 dark:bg-gray-800 rounded-xl min-h-[320px] shadow-sm" data-alt="Modern illustration of fashionable friends shopping together" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD9elLOCaLQvUiK3ZSD44iTXSh0YeqA9-eojMOzyK6QBtp37nDLDqYkIJvhSa1N97at_3TBfXTy85vpPMwVdFfK3LChWqshOaoPUrpcXEyFteT8IOWlTm2X3-8Qp2QBt4fUDrF_DyYWmChURzB9VUbf5KONL8qNGgq-JhY6hGiaCWoVwCN9_LFQM80fPLAhE-S4498VwLDimgsUFe8eRjED8RYQTkWvHuiu53ozvy-7BRMDeB-FNBOkkkG-Jepbng22lll4TE1hRZ17");'>
+</div>
+</div>
+<!-- HeadlineText -->
+<div class="px-6">
+<h1 class="text-[#161d0c] dark:text-white tracking-tight text-3xl font-extrabold leading-[1.1] text-center pb-3 pt-8">
+                    Share the Style,<br/><span class="text-primary bg-black px-2 dark:bg-white dark:text-black">Get $20</span>
+</h1>
+</div>
+<!-- BodyText -->
+<div class="px-8">
+<p class="text-gray-600 dark:text-gray-400 text-base font-medium leading-relaxed pb-6 text-center">
+                    Give your friends $20 off their first order and get $20 in points when they shop.
+                </p>
+</div>
+<!-- Referral Code Box (Modified EmptyState) -->
+<div class="px-4">
+<div class="flex flex-col items-center gap-6 rounded-xl border-2 border-dashed border-primary/40 bg-primary/5 dark:bg-primary/10 px-6 py-10 transition-all hover:border-primary/60">
+<div class="flex flex-col items-center gap-1">
+<p class="text-sm font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">Your Referral Code</p>
+<p class="text-[#161d0c] dark:text-white text-3xl font-black leading-tight tracking-widest">STYLE-UX-2024</p>
+</div>
+<button class="flex min-w-[140px] cursor-pointer items-center justify-center gap-2 rounded-full h-12 px-8 bg-primary text-black text-base font-bold transition-transform active:scale-95 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-xl">content_copy</span>
+<span class="truncate">Copy Code</span>
+</button>
+</div>
+</div>
+<!-- Social Sharing Row -->
+<div class="mt-10 px-4">
+<p class="text-center text-sm font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-6">Or Share Via</p>
+<div class="flex justify-between items-center max-w-sm mx-auto">
+<!-- WhatsApp -->
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-14 h-14 rounded-full bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center shadow-sm group-active:scale-90 transition-all">
+<span class="material-symbols-outlined text-2xl text-[#25D366]">chat</span>
+</div>
+<span class="text-[10px] font-bold text-gray-500 uppercase">WhatsApp</span>
+</div>
+<!-- Instagram -->
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-14 h-14 rounded-full bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center shadow-sm group-active:scale-90 transition-all">
+<span class="material-symbols-outlined text-2xl text-[#E4405F]">camera</span>
+</div>
+<span class="text-[10px] font-bold text-gray-500 uppercase">Instagram</span>
+</div>
+<!-- Message -->
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-14 h-14 rounded-full bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center shadow-sm group-active:scale-90 transition-all">
+<span class="material-symbols-outlined text-2xl text-[#34B7F1]">sms</span>
+</div>
+<span class="text-[10px] font-bold text-gray-500 uppercase">Message</span>
+</div>
+<!-- Email -->
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-14 h-14 rounded-full bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center shadow-sm group-active:scale-90 transition-all">
+<span class="material-symbols-outlined text-2xl text-gray-600 dark:text-gray-300">mail</span>
+</div>
+<span class="text-[10px] font-bold text-gray-500 uppercase">Email</span>
+</div>
+</div>
+</div>
+<!-- Referral Status Button -->
+<div class="mt-12 px-4">
+<button class="w-full flex items-center justify-between p-5 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700 group active:scale-[0.98] transition-all">
+<div class="flex flex-col items-start">
+<span class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-tight">Referral Status</span>
+<span class="text-lg font-bold">12 Friends Joined</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex -space-x-3">
+<div class="w-8 h-8 rounded-full border-2 border-white dark:border-gray-900 bg-gray-200" data-alt="User avatar 1" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB-xFPPbTfmzZzzIneWN-M5223ytVH1nFEMeqr3u19_iigW6ZnqXAynVBQXuFgS330KVTqI9IJ3jgl-riR2we7Iztlo0knoKu4JaTzBS-vLlR1yUmpgpbMYb8rHEwEQO9-qxUbUfDEQczbOU4qak3G9BX8H_1gXDfvkk9xuNYJSrFEQid0UgSBJRvO7R6vXv05UY4EdhSLf5LFmAuQzllaneZV_4ABg4pqmZ_1CnM3lYmLUzfdO03ZbNEUVRL4zuKl5W1jeejF-cWND'); background-size: cover;"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white dark:border-gray-900 bg-gray-200" data-alt="User avatar 2" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC-54SOq8-CgF0euci18q1u0FUtreHEo4lUf9Gs9_zXGwy-gzbet5-w1ks-IKUAJh3uaynkWLGI6E8RcbzouYLu9GeHDT0hK1Clfk9sSlGp1uRYzkIDgHMtT66e1DiXTMX4sN3eB3KUIbVy-Tqmkm1jn_l6JiKnBWL0Hzg6AmQF3zn636mW71Ac8eMVdy7teV0MjtYhcJaGZmWf0fZmdOq44DvBEfvEUB1CuQJYDDfry3ikWyKjxH2WQnF4eL_-9mTAgz0yhEeiHRpc'); background-size: cover;"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white dark:border-gray-900 bg-primary flex items-center justify-center text-[10px] font-bold text-black">+10</div>
+</div>
+<span class="material-symbols-outlined text-gray-400 group-hover:translate-x-1 transition-transform">arrow_forward_ios</span>
+</div>
+</button>
+</div>
+<!-- Footer Spacing -->
+<div class="h-20"></div>
+</div>
+</div>
+</body></html>

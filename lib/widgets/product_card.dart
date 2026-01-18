@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../models/product.dart';
 import '../theme/app_theme.dart';
-import '../providers/wishlist_provider.dart';
 
 class ProductCard extends StatefulWidget {
   final Product product;
@@ -67,8 +65,8 @@ class _ProductCardState extends State<ProductCard>
               .round()
         : 0;
 
-    final wishlistProvider = Provider.of<WishlistProvider>(context);
-    final isFavorite = wishlistProvider.isFavorite(widget.product.id);
+    // Use product instance directly since it's now source of truth (via Provider list update)
+    final isFavorite = widget.product.isFavorite;
 
     return MouseRegion(
       onEnter: (_) => _handleHover(true),
@@ -102,7 +100,7 @@ class _ProductCardState extends State<ProductCard>
                           ),
                           child: AspectRatio(
                             aspectRatio:
-                                0.75, // Fixed aspect ratio for consistency, or remove for true masonry if images differ
+                                1.0, // Square aspect ratio as per design
                             child: Image.asset(
                               widget.product.imageUrl,
                               width: double.infinity,
@@ -154,12 +152,7 @@ class _ProductCardState extends State<ProductCard>
                           top: 8,
                           right: 8,
                           child: GestureDetector(
-                            onTap: () {
-                              wishlistProvider.toggleFavorite(
-                                widget.product.id,
-                              );
-                              widget.onFavoriteToggle();
-                            },
+                            onTap: widget.onFavoriteToggle,
                             child: Container(
                               padding: const EdgeInsets.all(8),
                               decoration: BoxDecoration(
@@ -184,7 +177,13 @@ class _ProductCardState extends State<ProductCard>
 
                     // Product Info
                     Padding(
-                      padding: const EdgeInsets.all(AppTheme.spacing12),
+                      padding: const EdgeInsets.only(
+                        left: AppTheme.spacing12,
+                        right: AppTheme.spacing12,
+                        top: AppTheme.spacing12,
+                        bottom: AppTheme
+                            .spacing16, // Extra padding to prevent sub-pixel overflow
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

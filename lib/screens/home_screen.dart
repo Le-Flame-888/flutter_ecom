@@ -3,10 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../theme/app_theme.dart';
-import '../widgets/category_pill.dart';
 import '../widgets/product_card.dart';
-import '../widgets/hero_carousel.dart';
-import '../widgets/floating_search_bar.dart';
+import '../widgets/hero_banner.dart';
 import '../widgets/home_app_bar.dart';
 import '../providers/product_provider.dart';
 
@@ -24,7 +22,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String _selectedCategory = 'All';
-  String _selectedGender = 'All'; // Gender filter
   final List<String> _categories = [
     'All',
     'Dresses',
@@ -32,18 +29,17 @@ class _HomeScreenState extends State<HomeScreen> {
     'Jackets',
     'Beanies',
   ];
-  final List<String> _genders = ['All', 'Men', 'Women', 'Unisex'];
 
   @override
   Widget build(BuildContext context) {
     final productProvider = Provider.of<ProductProvider>(context);
     final filteredProducts = productProvider.getFilteredProducts(
       _selectedCategory,
-      _selectedGender,
+      'All', // Default gender as we removed the filter UI for now to match design
     );
 
     return Scaffold(
-      backgroundColor: AppTheme.whiteColor,
+      backgroundColor: AppTheme.backgroundLight,
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
@@ -54,81 +50,66 @@ class _HomeScreenState extends State<HomeScreen> {
                   // Top Bar
                   const HomeAppBar(),
 
-                  const SizedBox(height: AppTheme.spacing8),
-
-                  // Search Bar
-                  const FloatingSearchBar(),
-
-                  const SizedBox(height: AppTheme.spacing24),
-
-                  // Hero Carousel
-                  const HeroCarousel(),
-
-                  const SizedBox(height: 24),
-
-                  // Category Pills
-                  SizedBox(
-                    height: 40,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      itemCount: _categories.length,
-                      itemBuilder: (context, index) {
-                        final category = _categories[index];
-                        return CategoryPill(
-                          label: category,
-                          isSelected: _selectedCategory == category,
-                          icon: category == 'Dresses'
-                              ? Icons.check_circle_outline
-                              : null,
-                          onTap: () {
-                            setState(() {
-                              _selectedCategory = category;
-                            });
-                          },
-                        );
-                      },
-                    ),
-                  ),
-
-                  const SizedBox(height: 16),
-
-                  // Gender Filter Pills
+                  // Search & Filter Bar
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0,
+                      vertical: 4.0,
+                    ),
                     child: Row(
                       children: [
-                        Text(
-                          'Gender:',
-                          style: Theme.of(context).textTheme.titleMedium
-                              ?.copyWith(
-                                fontSize: 14,
-                                color: AppTheme.darkGray,
+                        Expanded(
+                          child: Container(
+                            height: 48,
+                            decoration: BoxDecoration(
+                              color:
+                                  Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? AppTheme.darkGray
+                                  : AppTheme.lightGray,
+                              borderRadius: BorderRadius.circular(
+                                AppTheme.radiusMedium,
                               ),
+                            ),
+                            child: TextField(
+                              style: TextStyle(
+                                color:
+                                    Theme.of(context).brightness ==
+                                        Brightness.dark
+                                    ? Colors.white
+                                    : AppTheme.black,
+                              ),
+                              decoration: const InputDecoration(
+                                hintText: 'Explore Fashion',
+                                prefixIcon: Icon(
+                                  Icons.search,
+                                  color: AppTheme.mediumGray,
+                                ),
+                                border: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                contentPadding: EdgeInsets.symmetric(
+                                  vertical: 12,
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
                         const SizedBox(width: 12),
-                        Expanded(
-                          child: SizedBox(
-                            height: 36,
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: _genders.length,
-                              itemBuilder: (context, index) {
-                                final gender = _genders[index];
-                                return Padding(
-                                  padding: const EdgeInsets.only(right: 8),
-                                  child: CategoryPill(
-                                    label: gender,
-                                    isSelected: _selectedGender == gender,
-                                    onTap: () {
-                                      setState(() {
-                                        _selectedGender = gender;
-                                      });
-                                    },
-                                  ),
-                                );
-                              },
+                        Container(
+                          width: 48,
+                          height: 48,
+                          decoration: BoxDecoration(
+                            color: AppTheme.primaryColor,
+                            borderRadius: BorderRadius.circular(
+                              AppTheme.radiusMedium,
                             ),
+                          ),
+                          child: IconButton(
+                            icon: const Icon(Icons.tune, color: AppTheme.black),
+                            onPressed: () {
+                              // TODO: Show Filter Bottom Sheet
+                            },
                           ),
                         ),
                       ],
@@ -137,18 +118,88 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   const SizedBox(height: 24),
 
-                  // Product Grid Header
+                  // Hero Banner
+                  const HeroBanner(),
+
+                  const SizedBox(height: 24),
+
+                  // Category Chips
+                  SizedBox(
+                    height: 40,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      itemCount: _categories.length,
+                      itemBuilder: (context, index) {
+                        final category = _categories[index];
+                        final isSelected = _selectedCategory == category;
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _selectedCategory = category;
+                              });
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 24,
+                              ),
+                              decoration: BoxDecoration(
+                                color: isSelected
+                                    ? (Theme.of(context).brightness ==
+                                              Brightness.light
+                                          ? AppTheme.black
+                                          : AppTheme.primaryColor)
+                                    : (Theme.of(context).brightness ==
+                                              Brightness.light
+                                          ? AppTheme.lightGray
+                                          : AppTheme.darkGray),
+                                borderRadius: BorderRadius.circular(
+                                  AppTheme.radiusFull,
+                                ),
+                              ),
+                              child: Text(
+                                category,
+                                style: TextStyle(
+                                  color: isSelected
+                                      ? (Theme.of(context).brightness ==
+                                                Brightness.light
+                                            ? Colors.white
+                                            : AppTheme.black)
+                                      : (Theme.of(context).brightness ==
+                                                Brightness.light
+                                            ? AppTheme.black
+                                            : Colors.white),
+                                  fontWeight: isSelected
+                                      ? FontWeight.bold
+                                      : FontWeight.w500,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  // "Special For You" Header
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
+                        Text(
                           'Special For You',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: Theme.of(context).textTheme.titleLarge
+                              ?.copyWith(
+                                fontWeight: FontWeight.w800,
+                                letterSpacing: -0.5,
+                              ),
                         ),
                         TextButton(
                           onPressed: () {
@@ -158,7 +209,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                           child: const Text(
                             'See All',
-                            style: TextStyle(color: Colors.grey),
+                            style: TextStyle(
+                              color: AppTheme.mediumGray,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                       ],
@@ -169,7 +223,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            // Product Grid with Provider Data (Masonry)
+            // Product Grid
             SliverPadding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               sliver: SliverMasonryGrid.count(

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#b5ff4d",
+                        "background-light": "#ffffff",
+                        "background-dark": "#242428",
+                    },
+                    fontFamily: {
+                        "display": ["Epilogue", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#161d0c] dark:text-white antialiased">
+<div class="relative flex h-screen w-full flex-col overflow-hidden max-w-md mx-auto border-x border-gray-100 dark:border-zinc-800">
+<!-- Top App Bar -->
+<header class="flex items-center px-4 pt-6 pb-2 justify-between">
+<div class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back_ios_new</span>
+</div>
+<h2 class="text-sm font-bold uppercase tracking-widest text-center flex-1">Define Your Style</h2>
+<div class="w-10"></div> <!-- Spacer for symmetry -->
+</header>
+<!-- Progress Section -->
+<div class="flex flex-col gap-2 px-6 py-4">
+<div class="flex justify-between items-end">
+<span class="text-[10px] font-extrabold uppercase tracking-tighter opacity-50">Onboarding Quiz</span>
+<span class="text-xs font-bold tracking-tight">Step 1 of 5</span>
+</div>
+<div class="h-1.5 w-full bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 20%;"></div>
+</div>
+</div>
+<!-- Main Content Area Scrollable -->
+<main class="flex-1 overflow-y-auto hide-scrollbar px-6 pb-24">
+<!-- Headline -->
+<h1 class="text-3xl font-extrabold leading-[1.1] tracking-tight pt-4 pb-8">
+                What is your <br/><span class="text-primary bg-zinc-900 px-2 py-0.5 inline-block">preferred look?</span>
+</h1>
+<!-- Style Selection Grid -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Card: Minimalist (Selected State Example) -->
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden cursor-pointer ring-4 ring-primary shadow-xl scale-[1.02] transition-transform">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Model wearing clean minimalist beige outfit" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuC0oYFqAEzDDv7552rapg-6NMMUX1x3HEmlnNyWoZkiZXzMfBVmI0fKEUeih-6pTuWytL89YyGOnikSXNOFztTsoFy3IeYwASv7yEt0RHNsYFTT1OLWCHJcK8_YmeVQgfwohfjg4SM1vRTK2mOsoEDS2NXUKY-rldgKtHXG7-SVnc6cPUUxYLHJYMdly1M03He97ZP9g4vR80o0GztPgGY174yoL5eflS2SAri5kK5S6Z82rHaDaeFArCy8HJANZuJNxgIyPH2ji13C');"></div>
+<div class="absolute top-3 right-3 flex items-center justify-center w-7 h-7 bg-primary rounded-full shadow-lg">
+<span class="material-symbols-outlined text-[#161d0c] text-lg font-bold">check</span>
+</div>
+<div class="absolute bottom-4 left-4">
+<p class="text-white text-lg font-bold leading-none tracking-tight">Minimalist</p>
+<p class="text-white/60 text-[10px] mt-1 uppercase font-medium">Clean &amp; Neutral</p>
+</div>
+</div>
+<!-- Card: Streetwear -->
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden cursor-pointer hover:scale-[0.98] transition-transform group">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Urban streetwear fashion with oversized hoodie" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuARM2TDgDwNIIAReniBp9seyE7p0jCnCNqjtDeWCp7moF2RCYqPREJySL9kj6FdtlRSrQMKalAt7SoV1-npSpavjCbY7HFa5TYSJAdUqzKHD8-Vkd1pFZBOFwdMxCmHh8NfqzOVgPLo-eA57v4jNdgfwmrCeTbPGaVEqIXUZ73v_SddvsiubZQ54Ve_ep-gnDaV88P9JQXgtgxMobGpMfgtrsK_y-_rkBgWQ7knWV5giHElw8XiAtnG72G3SGO-Ha4WwkLR6zz6zAky');"></div>
+<div class="absolute bottom-4 left-4">
+<p class="text-white text-lg font-bold leading-none tracking-tight">Streetwear</p>
+<p class="text-white/60 text-[10px] mt-1 uppercase font-medium">Urban &amp; Edgy</p>
+</div>
+</div>
+<!-- Card: Bohemian -->
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden cursor-pointer hover:scale-[0.98] transition-transform group">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Bohemian style dress with floral patterns" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8673r010_xaKVSNLtXjbmboSeRYJyeYFiHUzBxKEjpBXDm7--fLcE2sU22sy4dhRS0DgCzL9JBedF2XUbuQPNL0AmnleSBddv_uYFgV2P0S0n3PslWSc3QMDl8TV-DocqX3R3dWVsSg8IdSiE3UvKkRK5j6BIVXmWAlDzAurgFGAq80wGnBb3JGngAjcepBANKnUkD7y1nYk6eMQLdneaGkvqKpCbvfjmtoljNSC1W81r-ZcP0B6SHS4GTg-ZCt56czuB4YybZ8eT');"></div>
+<div class="absolute bottom-4 left-4">
+<p class="text-white text-lg font-bold leading-none tracking-tight">Bohemian</p>
+<p class="text-white/60 text-[10px] mt-1 uppercase font-medium">Free-spirited</p>
+</div>
+</div>
+<!-- Card: Formal -->
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden cursor-pointer hover:scale-[0.98] transition-transform group">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Sharp formal attire tailored suit" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuANR6VwrlUCNCylAeFApHdJaWHYJvJJmAwM8mvg6XbWNMHhegm7_7vAziYKTsPdOlDt2bmJELWCCc9qUaKPtQvWe5X-GR_4Fh--iqTQdrEYIvDfN_wxMRt6fPKn6Mx2eww9edpctE9ytOPk8JgfzM_WZe6uVGc7sbhD8eoxFMbgYOTAYUaKt7y_XO2doe0RBLJ9Z1RMdkvPeB-31XP9GOwCGobLplO3VwNKANGWZ84DJoMTZRZkOK7ymFNaxOpYFNJcyBVj_jKbWOPL');"></div>
+<div class="absolute bottom-4 left-4">
+<p class="text-white text-lg font-bold leading-none tracking-tight">Formal</p>
+<p class="text-white/60 text-[10px] mt-1 uppercase font-medium">Polished &amp; Classic</p>
+</div>
+</div>
+</div>
+<div class="mt-8 text-center">
+<p class="text-xs text-zinc-400 dark:text-zinc-500 font-medium">You can select multiple styles that fit you.</p>
+</div>
+</main>
+<!-- Bottom Action Bar (Fixed but within container) -->
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background-light dark:from-background-dark via-background-light/95 dark:via-background-dark/95 to-transparent">
+<button class="w-full bg-primary hover:opacity-90 active:scale-[0.98] transition-all h-14 rounded-full flex items-center justify-center gap-2 group shadow-lg shadow-primary/20">
+<span class="text-[#161d0c] font-extrabold text-lg tracking-tight uppercase">Next Step</span>
+<span class="material-symbols-outlined text-[#161d0c] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<!-- Safe Area Bottom Spacing for iOS -->
+<div class="h-4"></div>
+</div>
+</div>
+</body></html>

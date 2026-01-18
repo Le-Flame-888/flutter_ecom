@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#b5ff4d",
+                        "background-light": "#f7f7f8",
+                        "background-dark": "#1a1f23",
+                        "surface-light": "#EEF1F2",
+                        "surface-dark": "#2d3439"
+                    },
+                    fontFamily: {
+                        "display": ["Epilogue"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Epilogue', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#2B3238] dark:text-white font-display antialiased">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-32">
+<!-- Hero Section & Overlay Controls -->
+<div class="relative h-[45vh] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Modern minimalist fashion store interior design" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA_-dIhpcfPrHpn8etWLtzfkOCqjepfAo7aaxmuA4kJLQxnOVROJByBzODAjQZprhlEkr8ivua2w1Vkz32jKYXHMteBoDvCS2ELRJOktSnVCV7I6BZmfRESHRQ4xF0VVk9XFwanNbnEx2vq9c6X201YUGHKl1vHn7LemZYDD7rxEY-_7ealQ3o8jRzhN_Pe5p1DTnEmZLJtVXf6_pvsv7p9CK7PPC1T6TIV569e32i8-_22dNv_ygIkkN7asKBKqARjoVZ7-blQdTOC');"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent"></div>
+<!-- Floating Navigation -->
+<div class="absolute top-0 left-0 right-0 flex items-center justify-between p-4 pt-12">
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md text-white">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md text-white">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+<!-- Content Area -->
+<div class="relative -mt-10 flex flex-col gap-6 px-4">
+<!-- Store Header Card -->
+<div class="rounded-xl bg-white dark:bg-surface-dark p-6 shadow-sm ring-1 ring-black/5">
+<div class="flex items-start justify-between">
+<div>
+<h1 class="text-3xl font-bold tracking-tight text-[#1a1f23] dark:text-white">Fashion Hub Downtown</h1>
+<p class="mt-2 text-sm font-medium text-[#788187] dark:text-gray-400">123 Fashion Ave, Downtown District</p>
+</div>
+<div class="flex items-center gap-1.5 rounded-full bg-primary/20 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#07881a] dark:text-primary">
+<span class="h-2 w-2 rounded-full bg-[#07881a] dark:bg-primary animate-pulse"></span>
+                        Open
+                    </div>
+</div>
+</div>
+<!-- Operating Hours Accordion -->
+<div class="rounded-xl bg-white dark:bg-surface-dark shadow-sm ring-1 ring-black/5 overflow-hidden">
+<details class="group">
+<summary class="flex cursor-pointer items-center justify-between p-5 list-none">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#788187]">schedule</span>
+<p class="text-sm font-semibold">Today: 10:00 AM - 9:00 PM</p>
+</div>
+<span class="material-symbols-outlined text-[#788187] transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-5 pb-5 pt-0 space-y-3">
+<div class="flex justify-between text-sm border-t border-gray-100 dark:border-gray-700 pt-3">
+<span class="text-[#788187]">Mon - Fri</span>
+<span class="font-medium">10:00 AM - 9:00 PM</span>
+</div>
+<div class="flex justify-between text-sm text-primary font-bold">
+<span>Saturday</span>
+<span>10:00 AM - 10:00 PM</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-[#788187]">Sunday</span>
+<span class="font-medium">11:00 AM - 7:00 PM</span>
+</div>
+</div>
+</details>
+</div>
+<!-- Inventory Section -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between px-1">
+<h2 class="text-xl font-bold">Trending in Stock</h2>
+<a class="text-sm font-bold text-[#788187] dark:text-primary underline decoration-2 underline-offset-4" href="#">View All</a>
+</div>
+<div class="no-scrollbar flex gap-4 overflow-x-auto pb-4 -mx-4 px-4">
+<!-- Product Card 1 -->
+<div class="min-w-[180px] flex-none rounded-xl bg-white dark:bg-surface-dark p-3 shadow-sm ring-1 ring-black/5">
+<div class="relative h-48 w-full overflow-hidden rounded-lg bg-gray-100">
+<img class="h-full w-full object-cover" data-alt="Classic denim jacket on a mannequin" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNkLSiGM8Rv9C5LxfPGnr46_DcbkscAI1qz_XDCu2cLD7EOHhCo4o3FzotLH40PVdhMtugYitaHZEEGVnV90rsJkyJQmoG9skZ7OCkL8G5-e7vJJwUhoX-pLjwmurYzfHgnAFPhTxyZG1glhEqfkd_GtLCvxjc7vumke72u9YCBdVGm_6kwIIpZMuGvNrr1jmNVv2nuuJy9ev93PP4rF5JBdxMkrU_pIb5umFmRCRebat_55BJ7Py5XGocYYrFGfmqY0aqa7ko2ttc"/>
+<div class="absolute top-2 right-2 rounded-full bg-white/90 p-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</div>
+</div>
+<div class="mt-3">
+<h3 class="line-clamp-1 text-sm font-bold">Oversized Denim</h3>
+<p class="text-xs text-[#788187]">$129.00</p>
+<button class="mt-3 w-full rounded-lg border border-[#788187]/30 bg-white dark:bg-transparent py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-gray-50 dark:hover:bg-white/10">Check Size</button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="min-w-[180px] flex-none rounded-xl bg-white dark:bg-surface-dark p-3 shadow-sm ring-1 ring-black/5">
+<div class="relative h-48 w-full overflow-hidden rounded-lg bg-gray-100">
+<img class="h-full w-full object-cover" data-alt="Black minimalist cotton t-shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCirsvgRXddIL1l1SCWMj2s8uy7s4ZDF2AkJTkMmOxsJCtdl5YuOhCKLX9248SoTJzAwAN5_2dExwN04WugncQaoEcYRKFZQfUucucaARsZrhnSmyuphYgghNtlW_J-CusKLg_r_nfuCWntEvhigSGMGh8hbvakBO51I71v2fIieb2l2hBrzOd5oKueckCwWo7eNO49b9ADxvuVBsIW525_FWpa3SrUEeI7ltUdUOf4hqL0lLJwiA_di4WjEtzw06koQMjDsj_bbt6W"/>
+<div class="absolute top-2 right-2 rounded-full bg-white/90 p-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</div>
+</div>
+<div class="mt-3">
+<h3 class="line-clamp-1 text-sm font-bold">Neon Mesh Tee</h3>
+<p class="text-xs text-[#788187]">$45.00</p>
+<button class="mt-3 w-full rounded-lg border border-[#788187]/30 bg-white dark:bg-transparent py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-gray-50 dark:hover:bg-white/10">Check Size</button>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="min-w-[180px] flex-none rounded-xl bg-white dark:bg-surface-dark p-3 shadow-sm ring-1 ring-black/5">
+<div class="relative h-48 w-full overflow-hidden rounded-lg bg-gray-100">
+<img class="h-full w-full object-cover" data-alt="Red athletic running sneakers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmUbfBpNkhbLW5FTvt4U5EcbGg3WXaRuflSAtskeIVJCFl9Vj9lyDQcDdUmQ0AlAOF49XMYd5kgZPEtrjcMBJrAEo8LNnkkboSZIr4viEy07qLd6knuJfRypa6jfDiutI_NBjhwh_CEAJkCdsZzQT5KDX3Nr1X_bVhlooVOwsAYSpigLJMx4UzvtN0qoCMilJ9Yr0my7k1qDzOzXAgpQTDnpbWXzMVzpspuvU1-DX5fn_D4P7MCEnQrK7TR39Up8FibNUJUUMuBdhD"/>
+<div class="absolute top-2 right-2 rounded-full bg-white/90 p-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</div>
+</div>
+<div class="mt-3">
+<h3 class="line-clamp-1 text-sm font-bold">Vibe Sneakers</h3>
+<p class="text-xs text-[#788187]">$190.00</p>
+<button class="mt-3 w-full rounded-lg border border-[#788187]/30 bg-white dark:bg-transparent py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-gray-50 dark:hover:bg-white/10">Check Size</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Bottom CTA -->
+<div class="fixed bottom-0 left-0 right-0 z-50 bg-white/80 dark:bg-background-dark/80 px-4 py-6 backdrop-blur-xl border-t border-gray-100 dark:border-gray-800">
+<div class="mx-auto flex max-w-lg gap-3">
+<button class="flex-1 rounded-xl bg-primary px-6 py-4 text-sm font-bold text-[#161d0c] shadow-[0_8px_20px_rgba(181,255,77,0.3)] active:scale-[0.98] transition-all">
+                    Get Directions
+                </button>
+<button class="flex flex-1 items-center justify-center gap-2 rounded-xl border-2 border-[#788187]/20 bg-white dark:bg-transparent px-6 py-4 text-sm font-bold text-[#161d0c] dark:text-white active:bg-gray-50">
+<span class="material-symbols-outlined text-xl">call</span>
+                    Call Store
+                </button>
+</div>
+</div>
+</div>
+</body></html>

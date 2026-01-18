@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Wishlist Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#b0ff57",
+                        "background-light": "#ffffff",
+                        "background-dark": "#181a1b",
+                    },
+                    fontFamily: {
+                        "display": ["Epilogue", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Epilogue', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .soft-float {
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex h-auto min-h-screen w-full max-w-[430px] mx-auto flex-col overflow-x-hidden border-x border-gray-100 dark:border-zinc-800">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 pt-12 pb-4">
+<div class="flex items-center justify-between mb-6">
+<h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">My Wishlist</h1>
+<div class="flex gap-2">
+<button class="flex items-center justify-center size-10 rounded-full bg-slate-100 dark:bg-zinc-800">
+<span class="material-symbols-outlined text-xl">more_horiz</span>
+</button>
+</div>
+</div>
+<!-- Search & Filter Bar -->
+<div class="flex gap-3 items-center">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+<input class="w-full bg-slate-100 dark:bg-zinc-800 border-none rounded-xl pl-12 pr-4 h-12 text-sm focus:ring-2 focus:ring-primary/50 placeholder:text-slate-400 transition-all" placeholder="Search saved items" type="text"/>
+</div>
+<button class="flex items-center justify-center size-12 rounded-xl bg-slate-100 dark:bg-zinc-800 hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">tune</span>
+</button>
+</div>
+</header>
+<!-- Chips / Quick Filters -->
+<div class="flex gap-2 px-6 py-2 overflow-x-auto no-scrollbar">
+<button class="px-5 py-2 rounded-full bg-primary text-black text-sm font-semibold whitespace-nowrap">All Items (12)</button>
+<button class="px-5 py-2 rounded-full bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-slate-300 text-sm font-medium whitespace-nowrap hover:bg-slate-200">Clothing</button>
+<button class="px-5 py-2 rounded-full bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-slate-300 text-sm font-medium whitespace-nowrap hover:bg-slate-200">Shoes</button>
+<button class="px-5 py-2 rounded-full bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-slate-300 text-sm font-medium whitespace-nowrap hover:bg-slate-200">Accessories</button>
+</div>
+<!-- Product Grid -->
+<main class="flex-1 px-6 pt-4 pb-24">
+<div class="grid grid-cols-2 gap-x-4 gap-y-8">
+<!-- Card 1 -->
+<div class="flex flex-col gap-3 group">
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden soft-float bg-slate-50 dark:bg-zinc-900">
+<div class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" data-alt="Oversized gray cargo hoodie for streetwear style" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB_egJcsQ8phrCjtK4LjaG4wwcZuMKYR08gf5trdPs2-QSITGp-BtBUnsRMIUtb5_wf0UZnwE1x7TRhe8SL1V_HhowPdsQqMu4wTrSSN8ubSL73gHtjrpjBT3cR25WzBFIbZf3OAJSHp-gHvZk5IODKUzsOPsIpFoKmEDapUKYpgI5E8fttp5QGjKSEZEIi5hC9HVwZ0-NhL_AFlOooOZFJukaKMTZn0SxlHUQGz5rjdm0JUhFbEzC0M2aaZtiTCFdkM3TiEPNnXBzG");'></div>
+<button class="absolute top-3 right-3 size-9 bg-white dark:bg-zinc-800 rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-red-600 !fill-1">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<p class="text-[10px] font-bold tracking-widest text-slate-400 uppercase">Streetwear</p>
+<h3 class="text-sm font-semibold leading-snug line-clamp-1">Oversized Cargo Hoodie</h3>
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold">$59.00</span>
+<span class="text-xs text-slate-400 line-through">$85.00</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex flex-col gap-3 group">
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden soft-float bg-slate-50 dark:bg-zinc-900">
+<div class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" data-alt="Bright neon green beanie cap" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB_QtmgE1aOw-xjXGM1KuvfHdgA_jyBXJkypX5TUPNbVt0X6fJ5wNFMlqaMNisfyrhowNvZ0D041rj8YqNd0pRi2JmyJbQ_zbQcjfPJT9NjAus5sJOogHziUAgn3hWtHmuaVNbbvhnPQHLbLiWizJwOfZlFmXAlcw31NwIkGkNJssUsApzKXz-1FW1oNzSU3UAy51dx7t-GDPAKqY8yHE2dIQNxssVVdWEXH0oGDKN85UiyEOnHV5ffm-PVxMsbmWQpfTKKmTEmZQ79");'></div>
+<button class="absolute top-3 right-3 size-9 bg-white dark:bg-zinc-800 rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-red-600 !fill-1">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<p class="text-[10px] font-bold tracking-widest text-slate-400 uppercase">Accessories</p>
+<h3 class="text-sm font-semibold leading-snug line-clamp-1">Neon Green Beanie</h3>
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold">$22.00</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="flex flex-col gap-3 group">
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden soft-float bg-slate-50 dark:bg-zinc-900">
+<div class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" data-alt="Distressed vintage denim jacket" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAF8l6UCFAqOOQbvFUYYUSwKbl3p1WbDif1EpXfSOAIR7kqIJuT51mDZB-vVjr4GgYEGZE0MNri_LqQCNljDm2siqT76k4F8mWsbEYudlL3rTQi79sPowzcQs5Yl5PoDaX1PDrEBUU_a6eWX88GT0N1JSLBxQc_pT85V4s7TTdItu_OBwxjg0U_zl0nam0SilqYEzt6ES40l-PMm5e1nNfUCkmOG9ocDdOOxkrOPchwA-vGGQ_mVeJXm2ZEdyvxUx1tW8bgGHbbEXfl");'></div>
+<button class="absolute top-3 right-3 size-9 bg-white dark:bg-zinc-800 rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-red-600 !fill-1">favorite</span>
+</button>
+<div class="absolute bottom-2 left-2 bg-black/60 backdrop-blur-md px-2 py-1 rounded text-[10px] text-white font-bold">SALE</div>
+</div>
+<div class="space-y-1">
+<p class="text-[10px] font-bold tracking-widest text-slate-400 uppercase">Outerwear</p>
+<h3 class="text-sm font-semibold leading-snug line-clamp-1">Distressed Denim Jacket</h3>
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold">$110.00</span>
+<span class="text-xs text-slate-400 line-through">$145.00</span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="flex flex-col gap-3 group">
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden soft-float bg-slate-50 dark:bg-zinc-900">
+<div class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" data-alt="Platform leather sneakers in white and green" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuADj19_FihsYa18XpsW4OqcPb3ITHUOF_tAmwn6uRz9UeK3KObOENy-g2r3ItM9dCL5o7T-qEafNXxJrJEarfLa8h8OxL2jiV38Qo7ZXEz6FBtQCrrxE32pUXHRn2J38J8WJjB6k0BA4pBcawkRjMYzxf1R0CwPQ9CBoAylHSuI6GRSjShpc9EiQ6bR9jNlCIBD9u9hjzDX8abxrYPR_Cu2R3sp9PjCHDGNdpKN-VkL9Iwse_kS0YucnH9OWhitVxhXcHdTcFxMj8CY");'></div>
+<button class="absolute top-3 right-3 size-9 bg-white dark:bg-zinc-800 rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-red-600 !fill-1">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<p class="text-[10px] font-bold tracking-widest text-slate-400 uppercase">Footwear</p>
+<h3 class="text-sm font-semibold leading-snug line-clamp-1">Platform Sneakers</h3>
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold">$89.00</span>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="flex flex-col gap-3 group">
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden soft-float bg-slate-50 dark:bg-zinc-900">
+<div class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" data-alt="Stylish yellow fashion dress" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDHFPqZtk9JzF2hz6AQM6VmoPrc9DSHQ7gYLti8dvFNXfJhQgdIOHeakxouOCS0ESi6yOmeDXbMwSli_7lIetaLHkoY92X6fYSHoJYhWyEqBg9IU0iedQDH6Ot_sxCce4f2r0LeTvxujNVn7ZdeEvDHRPNjxvlf_8jCAcApDTobDNP1gYZ3Mlrkuzn0b4GPoaX8l6gspxkxzSe41A4BLaSwUlQssT6MOYkLTfYiYZO5jY9bySr_NePMSq2iB9C-crFG4R4dTD4-HFa6");'></div>
+<button class="absolute top-3 right-3 size-9 bg-white dark:bg-zinc-800 rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-red-600 !fill-1">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<p class="text-[10px] font-bold tracking-widest text-slate-400 uppercase">Dresses</p>
+<h3 class="text-sm font-semibold leading-snug line-clamp-1">Mini Knit Dress</h3>
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold">$45.00</span>
+</div>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="flex flex-col gap-3 group">
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden soft-float bg-slate-50 dark:bg-zinc-900">
+<div class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" data-alt="Premium leather shoulder bag in tan" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCRLtqmNvWumS7FZmDZ3TpZPDzpEkMowL2NTTvBBRsCkhp8X-653_XyeKeProzhfEAq_7VS8usannkLjh8-ZoGzAeE3EPBV73ipl5BPCz6BTBdrhow2GA-vrVpCnGccpXtFsA_yLxl6mzMvVho5Rwl0WR9Gms6GYsGR9fhshC2Cpyc3C6AfYcIUt9ZFHKV3Z_zVqibPETLcve5pW9I5D1GQk9K8yFButD71tLG3C_9w2IyClXwasqaD2HIZiaJl4WajpMY9aUZJCamT");'></div>
+<button class="absolute top-3 right-3 size-9 bg-white dark:bg-zinc-800 rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-red-600 !fill-1">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<p class="text-[10px] font-bold tracking-widest text-slate-400 uppercase">Bags</p>
+<h3 class="text-sm font-semibold leading-snug line-clamp-1">Leather Totepack</h3>
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold">$129.00</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] z-30 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-lg border-t border-slate-100 dark:border-zinc-800 px-6 py-4 flex justify-between items-center rounded-t-3xl shadow-[0_-5px_20px_rgba(0,0,0,0.05)]">
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600 transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600 transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">explore</span>
+<span class="text-[10px] font-medium">Explore</span>
+</a>
+<!-- Active State -->
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="relative">
+<div class="absolute -inset-2 bg-primary/20 rounded-full scale-125 opacity-100"></div>
+<span class="material-symbols-outlined text-2xl text-slate-900 dark:text-white !fill-1 relative z-10">favorite</span>
+</div>
+<span class="text-[10px] font-bold text-slate-900 dark:text-white relative z-10">Wishlist</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600 transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">shopping_cart</span>
+<span class="text-[10px] font-medium">Cart</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600 transition-colors" href="#">
+<div class="size-6 rounded-full bg-slate-200 dark:bg-zinc-700 overflow-hidden">
+<div class="w-full h-full bg-cover" data-alt="User profile avatar circle" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCYN6fpJRC5DbF7UgixCK75_SW5NP32-6sPpJf50eZzkhBrKz48FMIV2UgKoCzkgzpQzLbB9gJ_efJ2aEdSvv9O4VSNnYsWNCh_nDP4oImhg_mqd7RCw7OikJs631SzRBijMCnxYe_5tDFgRnac3rODPO5X3Xn0_Z5PblrKVkVbtG9QDqHc9IUdueaf1ZIGaYdAkUCMpM37W7Vublac7LW8-iSg-ROLIDb8p9SMbMmXKTmFstyxO_KiXNugkOcXyOzWv9Uc_jKOHqc3");'></div>
+</div>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</nav>
+<!-- Dynamic Island Padding for iOS -->
+<div class="h-6 bg-transparent pointer-events-none"></div>
+</div>
+</body></html>

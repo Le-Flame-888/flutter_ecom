@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Store Locator Map Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#b5ff4d",
+                        "background-light": "#ffffff",
+                        "background-dark": "#0d0d0d",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Public Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .map-gradient-overlay {
+            background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 20%);
+        }
+        .glass-search {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-gray-100 overflow-hidden">
+<!-- Main Container (Mobile Viewport) -->
+<div class="relative h-screen w-full flex flex-col overflow-hidden">
+<!-- Status Bar Area (iOS Style) -->
+<div class="absolute top-0 w-full h-12 z-50 flex items-center justify-between px-8 text-black pointer-events-none">
+<span class="text-sm font-semibold">9:41</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">signal_cellular_4_bar</span>
+<span class="material-symbols-outlined text-[18px]">wifi</span>
+<span class="material-symbols-outlined text-[20px]">battery_full</span>
+</div>
+</div>
+<!-- Header / Search Bar Area (Floating over Map) -->
+<div class="absolute top-12 left-0 right-0 z-40 px-4">
+<div class="flex items-center gap-3">
+<div class="glass-search flex flex-1 items-center h-12 px-4 rounded-xl shadow-lg border border-white/20">
+<span class="material-symbols-outlined text-gray-400 mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder-gray-500" placeholder="Search by city or zip" type="text"/>
+</div>
+<button class="bg-primary size-12 rounded-xl flex items-center justify-center shadow-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-black">tune</span>
+</button>
+</div>
+</div>
+<!-- Map Section -->
+<div class="relative flex-1 bg-[#e5e7eb] overflow-hidden">
+<!-- Simulated Map Image -->
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Minimalist street map of downtown Manhattan" data-location="New York City" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC7lEwdjwqFWJIAMFM5OXCD8rp1gE2bDJ_dA1AJ13JbUtasAwHev6zsADr6Fv9J548e-0gLhZV3kNWlv9YZs-5co_zbvJ37P0HmaXrWe5X6nyoln9aKVZuydsBg67inuvL_FWSpwGGvxa-Nj97BrgmBwOymczppaI5ZLFs44IBQjTMISZnGJitQ3QSRYsfnxDjbMVpEOZN2IGPFq1S9NehQXd48KBjIvjZKR3uh0onB4D3YwL4Up3SP0k8ilq1e-Q7Y4gdAZEtc9Tos");'>
+</div>
+<!-- Map Overlay for Status Bar Visibility -->
+<div class="absolute inset-0 map-gradient-overlay pointer-events-none"></div>
+<!-- Map Controls -->
+<div class="absolute right-4 top-32 flex flex-col gap-2">
+<button class="size-11 bg-white dark:bg-zinc-900 rounded-lg shadow-md flex items-center justify-center text-gray-700 dark:text-gray-200">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="size-11 bg-white dark:bg-zinc-900 rounded-lg shadow-md flex items-center justify-center text-gray-700 dark:text-gray-200">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="size-11 bg-white dark:bg-zinc-900 rounded-lg shadow-md flex items-center justify-center text-gray-700 dark:text-gray-200 mt-2">
+<span class="material-symbols-outlined text-blue-500">my_location</span>
+</button>
+</div>
+<!-- Custom Pins -->
+<!-- Store Pin 1 -->
+<div class="absolute top-[45%] left-[40%] flex flex-col items-center">
+<div class="size-10 bg-primary rounded-full border-4 border-white shadow-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-black text-[20px] font-bold">shopping_bag</span>
+</div>
+<div class="w-1 h-2 bg-white -mt-0.5"></div>
+</div>
+<!-- Store Pin 2 (Smaller) -->
+<div class="absolute top-[35%] left-[60%] flex flex-col items-center">
+<div class="size-8 bg-primary rounded-full border-[3px] border-white shadow-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-black text-[16px] font-bold">shopping_bag</span>
+</div>
+</div>
+<!-- User Location (Blue Dot) -->
+<div class="absolute top-[55%] left-[55%]">
+<div class="size-5 bg-blue-500 rounded-full border-2 border-white shadow-lg relative">
+<div class="absolute inset-0 bg-blue-400 rounded-full animate-ping opacity-75"></div>
+</div>
+</div>
+</div>
+<!-- Bottom Sheet -->
+<div class="relative z-50 bg-background-light dark:bg-background-dark rounded-t-3xl shadow-[0_-10px_30px_rgba(0,0,0,0.1)] flex flex-col max-h-[50vh]">
+<!-- Handle -->
+<div class="flex justify-center py-3">
+<div class="h-1.5 w-12 rounded-full bg-gray-200 dark:bg-zinc-800"></div>
+</div>
+<!-- Sheet Header -->
+<div class="px-5 pb-3 flex justify-between items-end">
+<div>
+<h2 class="text-xl font-bold tracking-tight">Stores Near You</h2>
+<p class="text-xs text-gray-500 font-medium">3 STORES FOUND</p>
+</div>
+<button class="text-primary text-sm font-semibold">View List</button>
+</div>
+<!-- Store Cards List -->
+<div class="flex-1 overflow-y-auto px-5 pb-8 space-y-4">
+<!-- Selected Card -->
+<div class="p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border-2 border-primary/40 shadow-sm">
+<div class="flex justify-between items-start mb-3">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-0.5">
+<span class="text-xs font-bold text-primary uppercase tracking-wider">Open Now</span>
+<span class="text-[10px] text-gray-400">•</span>
+<span class="text-xs text-gray-500 font-medium">Closes 9:00 PM</span>
+</div>
+<h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100">Fashion Hub Downtown</h3>
+<p class="text-sm text-gray-500">1.2 miles • 123 Main St, NY 10001</p>
+</div>
+<div class="w-16 h-16 rounded-xl bg-cover bg-center" data-alt="Boutique storefront with neon signs" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCcqb7AfPnJttm2SGwf0_UYrFN5104wYqtktMm2NjS8_n1iSuep84ytcsMZ3XtFyGJvsXCmZRakzKkmiEvbp0_iphy54tU1y7s7ntM6cakIj74DVk6uQPB6gRZg6cxAuIlrsheOiUx820yht2KGBidmK2PfF_p3hDgHtaKY48Qxh5El14kwjRq0zyd5HMHgf6G3uBQlAiIjFf2RqPgFTe0zcN7noITE_Vp2bg7xV9dCKxx9Fy_O29vlkorwIcNB72FVpJNsRmdveuWn");'></div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 h-11 rounded-xl bg-primary text-black font-bold text-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">directions</span>
+                            Directions
+                        </button>
+<button class="size-11 rounded-xl border-2 border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-700 dark:text-zinc-300">
+<span class="material-symbols-outlined">call</span>
+</button>
+<button class="size-11 rounded-xl border-2 border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-700 dark:text-zinc-300">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+</div>
+<!-- Regular Card 1 -->
+<div class="flex gap-4 p-2 items-center hover:bg-zinc-50 dark:hover:bg-zinc-900/50 rounded-xl transition-colors">
+<div class="w-20 h-20 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex-shrink-0 bg-cover bg-center" data-alt="Trendy store interior with racks of clothing" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD-DqA_4yWMlJCJYOfTRY3bpXuJVSOB8t-GUrndqK5d83i9CFnk9Vhl7jOYd-lmIna96SNqGijwWTeRKDh8rWwm7XSaDFIhNpj5-pjhL-zXqCmu2-zRKEuV9mvgHlpySMBcP9fAL36Iy0AM6byMboriBdh3RysQGRTTUh_Cbpx2dcc8MrZ8Yv6w41ECXqnu4dhMvd45zbQ6HR0cELjZRigzJb487AFe1UHv3zNJpn8bUjZyo0iBaBZnDl8Y0fIzAFxliBlm44RwBJFs");'></div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between mb-0.5">
+<h3 class="font-bold text-zinc-900 dark:text-zinc-100 truncate">Trendsetter Soho</h3>
+<span class="text-xs font-bold text-primary shrink-0">OPEN</span>
+</div>
+<p class="text-xs text-gray-500 mb-1">1.5 miles • 456 Broadway</p>
+<div class="flex items-center gap-3">
+<div class="flex items-center text-[11px] text-gray-600 font-medium">
+<span class="material-symbols-outlined text-[14px] mr-1">star</span> 4.8
+                            </div>
+<div class="flex items-center text-[11px] text-gray-600 font-medium">
+<span class="material-symbols-outlined text-[14px] mr-1">schedule</span> 10am - 8pm
+                            </div>
+</div>
+</div>
+</div>
+<!-- Regular Card 2 -->
+<div class="flex gap-4 p-2 items-center hover:bg-zinc-50 dark:hover:bg-zinc-900/50 rounded-xl transition-colors">
+<div class="w-20 h-20 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex-shrink-0 bg-cover bg-center" data-alt="Modern retail space with glass windows" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCfGmS-nDQ3-JQf3EsKe2t5zQIjHwNNpJF9p-Sms8VJ1DjtOztLAK3xvtdhYfUWNNlSkEM3uFZ2r3wnIGlv15qLZZiQA0mvT7UySJiVG2Wz0lChebBmK11Xb9ZVheEl6D23JS4u3LvY6_I3LjICGtfriRBo4lxSu9frAoFQQJ19z_B6wyw054AVMw1LJHpTNMa_KDYQGNoNgMl4aisiPmWbjTi9K5hjHB-sSSwJ_wXi2FylrllEQmG0qEZrFhP2wctcvirE25b35Apy");'></div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between mb-0.5">
+<h3 class="font-bold text-zinc-900 dark:text-zinc-100 truncate">Vibe Studio East</h3>
+<span class="text-xs font-bold text-zinc-400 shrink-0 uppercase">Closed</span>
+</div>
+<p class="text-xs text-gray-500 mb-1">3.2 miles • 789 5th Ave</p>
+<div class="flex items-center gap-3">
+<div class="flex items-center text-[11px] text-gray-600 font-medium">
+<span class="material-symbols-outlined text-[14px] mr-1 text-red-400">event_busy</span> Opens 11am Mon
+                            </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- App Bottom Navigation (iOS Style) -->
+<div class="h-20 bg-white/80 dark:bg-black/80 backdrop-blur-md border-t border-gray-100 dark:border-zinc-800 flex items-center justify-around px-6 pb-4">
+<button class="flex flex-col items-center gap-1 text-gray-400">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400">
+<span class="material-symbols-outlined">search</span>
+<span class="text-[10px] font-medium">Shop</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined font-fill-1">location_on</span>
+<span class="text-[10px] font-bold">Stores</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400 relative">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="text-[10px] font-medium">Cart</span>
+<div class="absolute -top-1 -right-1 size-4 bg-primary text-black text-[9px] font-bold rounded-full flex items-center justify-center">2</div>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</button>
+</div>
+<!-- iOS Home Indicator -->
+<div class="absolute bottom-1 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-black/20 dark:bg-white/20 rounded-full"></div>
+</div>
+<style>
+        .font-fill-1 {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</body></html>

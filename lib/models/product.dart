@@ -6,7 +6,7 @@ class Product {
   final String imageUrl;
   final String category;
   final String description;
-  final bool isFavorite;
+  bool isFavorite;
   final String gender; // 'Men', 'Women', or 'Unisex'
 
   Product({

@@ -23,12 +23,19 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     final total = cart.totalAmount;
 
     return Scaffold(
+      backgroundColor: AppTheme.backgroundLight,
       appBar: AppBar(
-        title: const Text('Checkout', style: TextStyle(color: Colors.black)),
+        title: Text(
+          'Checkout',
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: AppTheme.black,
+          ),
+        ),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: const BackButton(color: Colors.black),
+        leading: const BackButton(color: AppTheme.black),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
@@ -38,9 +45,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Shipping Address
-              const Text(
+              Text(
                 'Shipping Address',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: AppTheme.black,
+                ),
               ),
               const SizedBox(height: 16),
               _buildTextField('Full Name', Icons.person_outline),
@@ -58,9 +69,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               const SizedBox(height: 32),
 
               // Payment Method
-              const Text(
+              Text(
                 'Payment Method',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: AppTheme.black,
+                ),
               ),
               const SizedBox(height: 16),
               _buildPaymentOption(0, 'Credit Card', Icons.credit_card),
@@ -73,14 +88,18 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade50,
+                  color: AppTheme.whiteColor,
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: Colors.grey.shade200),
+                  border: Border.all(color: AppTheme.lightGray),
+                  boxShadow: AppTheme.shadowSm,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Total Amount', style: TextStyle(fontSize: 16)),
+                    const Text(
+                      'Total Amount',
+                      style: TextStyle(fontSize: 16, color: AppTheme.darkGray),
+                    ),
                     Text(
                       '\$${total.toStringAsFixed(2)}',
                       style: const TextStyle(
@@ -112,6 +131,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
+                    elevation: 0,
                   ),
                   child: const Text(
                     'Place Order',
@@ -129,30 +149,25 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   Widget _buildTextField(String label, IconData icon) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppTheme.whiteColor,
         borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.02),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        boxShadow: AppTheme.shadowSm,
       ),
       child: TextFormField(
         decoration: InputDecoration(
           labelText: label,
-          prefixIcon: Icon(icon, color: Colors.grey),
+          prefixIcon: Icon(icon, color: AppTheme.mediumGray),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide.none,
           ),
           filled: true,
-          fillColor: Colors.white,
+          fillColor: AppTheme.whiteColor,
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 16,
             vertical: 16,
           ),
+          labelStyle: const TextStyle(color: AppTheme.mediumGray),
         ),
       ),
     );
@@ -170,10 +185,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppTheme.whiteColor,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected ? AppTheme.primaryColor : Colors.grey.shade200,
+            color: isSelected ? AppTheme.primaryColor : AppTheme.lightGray,
             width: 2,
           ),
           boxShadow: isSelected
@@ -184,17 +199,20 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     offset: const Offset(0, 4),
                   ),
                 ]
-              : [],
+              : AppTheme.shadowSm,
         ),
         child: Row(
           children: [
-            Icon(icon, color: isSelected ? AppTheme.black : Colors.grey),
+            Icon(
+              icon,
+              color: isSelected ? AppTheme.black : AppTheme.mediumGray,
+            ),
             const SizedBox(width: 16),
             Text(
               title,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: isSelected ? AppTheme.black : Colors.black87,
+                color: isSelected ? AppTheme.black : AppTheme.darkGray,
               ),
             ),
             const Spacer(),
